@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:10:49 by osajide           #+#    #+#             */
-/*   Updated: 2023/05/31 19:32:06 by osajide          ###   ########.fr       */
+/*   Updated: 2023/05/31 21:20:35 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	loop_on_input(char *line, t_list **lst)
 			output_redirection(line, lst, &i);
 			printf("if_redir done\n");
 		}
-		else
-		{
-			// printf("other_characters begin\n");
-			other_characters(line, lst, &i);
-			// printf("other_characters done\n");
-		}
+		// else
+		// {
+		// 	// printf("other_characters begin\n");
+		// 	other_characters(line, lst, &i);
+		// 	// printf("other_characters done\n");
+		// }
 		i++;
 	}
 }

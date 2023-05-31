@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 00:01:48 by osajide           #+#    #+#             */
-/*   Updated: 2023/05/31 15:47:43 by osajide          ###   ########.fr       */
+/*   Updated: 2023/05/31 21:20:30 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ void	output_redirection(char *line, t_list **lst, int *pos)
 	}
 }
 
-void	other_characters(char *line, t_list **lst, int *pos)
-{
-	char	*temp;
-	int		start;
+// void	other_characters(char *line, t_list **lst, int *pos)
+// {
+// 	char	*temp;
+// 	int		start;
 
-	temp = NULL;
-	start = *pos;
-	while (line[*pos] && line[*pos] != 32)
-		(*pos)++;
-	temp = ft_substr(line, start, *pos);
-	ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
-}
+// 	temp = NULL;
+// 	start = *pos;
+// 	while (line[*pos] && line[*pos] != 32)
+// 		(*pos)++;
+// 	// temp = ft_substr(line, start, *pos);
+// 	// ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
+// }
