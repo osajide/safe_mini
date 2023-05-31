@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 22:44:57 by osajide           #+#    #+#             */
-/*   Updated: 2023/05/31 17:53:55 by osajide          ###   ########.fr       */
+/*   Updated: 2023/05/31 19:34:28 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	if_single_quote(char *line, t_list **lst, int *pos)
 		(*pos)++;
 	temp2 = ft_strjoin(temp, ft_substr(line, start, *pos));
 	if (temp2 && *temp2)
-		ft_lstadd_back(lst, ft_lstnew(ft_remove_char(temp2, 39), NOTHING, WORD));
+		ft_lstadd_back(lst, ft_lstnew(ft_remove_char(temp2, 39), IN_SQ, WORD));
 }
 
 void	if_double_quote(char *line, t_list **lst, int *pos)
@@ -151,11 +151,14 @@ void	if_double_quote(char *line, t_list **lst, int *pos)
 	while (line[*pos] && line[*pos] != 34)
 		(*pos)++;
 	temp = ft_substr(line, start, *pos + 1);
-	if (line[++(*pos)])
+	printf("temp in double quote = %s\n", temp);
+	(*pos)++;
+	if (line[*pos] && line[*pos] != ' ')
 	{
+		printf("line[%d] = %c\n", *pos, line[*pos]);
 		start = *pos;
 		(*pos)++;
-		while (line[*pos] && line[*pos]!= '$' && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != ' ')
+		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != ' ')
 			(*pos)++;
 		temp2 = ft_substr(line, start, *pos + 1);
 		temp3 = ft_strjoin(temp, temp2);

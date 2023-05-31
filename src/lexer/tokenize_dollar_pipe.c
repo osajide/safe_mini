@@ -6,12 +6,26 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:41:17 by osajide           #+#    #+#             */
-/*   Updated: 2023/05/31 17:51:51 by osajide          ###   ########.fr       */
+/*   Updated: 2023/05/31 19:31:35 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 #include <stdio.h>
+
+int	only_env(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == 34 || s[i] == 39)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	if_dollar_sign(char *line, t_list **lst, int *pos)
 {
@@ -21,8 +35,6 @@ void	if_dollar_sign(char *line, t_list **lst, int *pos)
 	temp = NULL;
 	start = *pos;
 	(*pos)++;
-	// while (line[*pos] && ((line[*pos] >= 'a' && line[*pos] <= 'z') || (line[*pos] >= 'A' && line[*pos] <= 'Z') || (line[*pos] >= '0' && line[*pos] <= '9')))
-	// 	(*pos)++;
 	while (line[*pos] && line[*pos] != ' ' && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>')
 	{
 		if (line[*pos] == 34)
@@ -32,8 +44,13 @@ void	if_dollar_sign(char *line, t_list **lst, int *pos)
 		(*pos)++;
 	}
 	temp = ft_substr(line, start, *pos);
-	ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, ENV));
-	(*pos)--;
+	if (only_env(temp))
+		ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, ENV));
+	else
+		ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
+	printf("dollar before = %d\n", line[*pos]);
+	// (*pos)--;
+	// printf("dollar after[%d] = %c\n", *pos, line[*pos]);
 }
 
 void	if_pipe(char *line, t_list **lst, int *pos)

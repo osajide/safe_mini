@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/31 17:16:31 by osajide          ###   ########.fr       */
+/*   Updated: 2023/05/31 18:07:16 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,45 @@ void	clear_lst(t_list *lst)
 	}
 }
 
+void	print_linked_list(t_list *lst)
+{
+	t_list	*t;
+
+	t = lst;
+	while (t)
+	{
+		printf("\n\n\n-----------------------------\n");
+		printf("t->content = %s\n", t->data->content);
+		if (t->data->state == 1)
+			printf("t->state = IN_SQ\n");
+		else if (t->data->state == 2)
+			printf("t->state = IN_DQ\n");
+		else if (t->data->state == 3)
+			printf("t->state = NOTHING\n");
+		if (t->data->token == 1)
+			printf("t->token = WORD\n");
+		else if (t->data->token == 2)
+			printf("t->token = ENV\n");
+		else if (t->data->token == 3)
+			printf("t->token = WHITE_SPACE\n");
+		else if (t->data->token == 4)
+			printf("t->token = SINGLE_Q\n");
+		else if (t->data->token == 5)
+			printf("t->token = DOUBLE_Q\n");
+		else if (t->data->token == 6)
+			printf("t->token = PIPE\n");
+		else if (t->data->token == 7)
+			printf("t->token = REDIR_IN\n");
+		else if (t->data->token == 8)
+			printf("t->token = REDIR_OUT\n");
+		else if (t->data->token == 9)
+			printf("t->token = APPEND_REDIR\n");
+		else if (t->data->token == 10)
+			printf("t->token = HEREDOC\n");
+		t = t->next;
+	}
+}
+
 void	minishell(void)
 {
 	char	*line;
@@ -37,22 +76,14 @@ void	minishell(void)
 		line = display_prompt();
 		if(line && line[0])
 		{	
-		check_input(line);
-		loop_on_input(line, &lst);
-		t_list *t = lst;
-		while (t)
-		{
-			printf("\n\n\n-----------------------------\n");
-			printf("t->content = %s\n", t->data->content);
-			printf("t->state = %d\n", t->data->state);
-			printf("t->token = %d\n", t->data->token);
-			t = t->next;
-		}
-		// exit(0);
-		// check_type_cmd(lst);
-		free(line);
-		clear_lst(lst);
-		lst  = 0;
+			check_input(line);
+			loop_on_input(line, &lst);
+			print_linked_list(lst);
+			// exit(0);
+			// check_type_cmd(lst);
+			free(line);
+			clear_lst(lst);
+			lst  = 0;
 		}
 	}
 }
