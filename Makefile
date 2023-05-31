@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/05/27 19:42:07 by osajide          ###   ########.fr        #
+#    Updated: 2023/05/31 17:11:45 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ EXECUTSRC	:=	$(addprefix $(SRCDIR)/$(EXECUTDIR)/, $(addsuffix .c, $(EXECUTSRC)))
 ############## compilation ###############
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -lreadline
+CFLAGS		=	-Wall -Wextra -Werror -lreadline -g -fsanitize=address
 
 
 C_LIBFT		=	make -C libft

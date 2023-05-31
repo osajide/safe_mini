@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:53:55 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/27 18:55:27 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:48:18 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,14 @@ typedef enum e_token
 	PIPE,
 	REDIR_IN,
 	REDIR_OUT,
+	APPEND_REDIR,
 	HEREDOC
 }	t_token;
 
 typedef struct s_data
 {
 	char	*content;
-	t_state 	state;
+	t_state state;
 	t_token	token;
 }	t_data;
 
@@ -65,5 +66,6 @@ void	output_redirection(char *line, t_list **lst, int *pos);
 void	if_dollar_sign(char *line, t_list **lst, int *pos);
 void	if_pipe(char *line, t_list **lst, int *pos);
 void	other_characters(char *line, t_list **lst, int *pos);
+void	skip_inside_quotes(char *line, int *pos, int ascii);
 
 #endif

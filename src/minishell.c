@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/27 21:58:43 by osajide          ###   ########.fr       */
+/*   Updated: 2023/05/31 17:16:31 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,27 @@ void	minishell(void)
 	t_list	*lst;
 
 	lst = NULL;
-    sleep(1);
 	while (1)
 	{
 		line = display_prompt();
+		if(line && line[0])
+		{	
 		check_input(line);
 		loop_on_input(line, &lst);
 		t_list *t = lst;
 		while (t)
 		{
-			printf("-----------------------------\n");
+			printf("\n\n\n-----------------------------\n");
 			printf("t->content = %s\n", t->data->content);
 			printf("t->state = %d\n", t->data->state);
 			printf("t->token = %d\n", t->data->token);
 			t = t->next;
 		}
 		// exit(0);
-		check_type_cmd(lst);
+		// check_type_cmd(lst);
 		free(line);
 		clear_lst(lst);
 		lst  = 0;
+		}
 	}
 }
