@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:53:55 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/31 17:48:18 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:23:03 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ typedef struct s_list
 {
 	t_data			*data;
 	struct s_list	*next;
+	struct s_list	*prev;
 }	t_list;
+
+/**************** lexer *****************/
 
 void	loop_on_input(char *line, t_list **lst);
 void	if_string(char *line, t_list **lst, int *pos);
@@ -67,5 +70,9 @@ void	if_dollar_sign(char *line, t_list **lst, int *pos);
 void	if_pipe(char *line, t_list **lst, int *pos);
 void	other_characters(char *line, t_list **lst, int *pos);
 void	skip_inside_quotes(char *line, int *pos, int ascii);
+
+/****************** analyzer *****************/
+
+void	analyzer(t_list *lst);
 
 #endif

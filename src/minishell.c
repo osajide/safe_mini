@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/31 18:07:16 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:06:04 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	minishell(void)
 			check_input(line);
 			loop_on_input(line, &lst);
 			print_linked_list(lst);
+			analyzer(lst);
 			// exit(0);
 			// check_type_cmd(lst);
 			free(line);

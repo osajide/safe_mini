@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   analyzer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 16:33:54 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/01 16:28:03 by osajide          ###   ########.fr       */
+/*   Created: 2023/06/01 16:00:10 by osajide           #+#    #+#             */
+/*   Updated: 2023/06/01 16:39:13 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../inc/minishell.h"
 #include <stdio.h>
 
-void	ft_lstadd_back(t_list **lst, t_list *node)
+void	analyzer(t_list *lst)
 {
 	t_list	*temp;
 
-	if (!(*lst))
+	temp = lst;
+	// while (temp)
+	// {
+	// 	printf("%s->", temp->data->content);
+	// 	temp = temp->next;
+	// }
+	// printf("\n");
+	while (temp)
 	{
-		*lst = node;
-		return ;
+		if (temp->data->token == PIPE)
+		{
+			if (!temp->next || temp->next->data->token != WORD || temp->prev->data->token == PIPE)
+				printf("!!!!!!!!!!!!!!!!!!!!!!! Error !!!!!\n");
+		}
+		temp = temp->next;
 	}
-	temp = ft_lstlast(*lst);
-	temp->next = node;
-	node->prev = temp;
-	node->next = NULL;
 }
