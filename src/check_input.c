@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:06:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/27 12:12:46 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/06/02 17:03:46 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ int	check_quotes(char *line)
 		{
 			i++;
 			if (next_quote(line, &i, 34) == 1)
-				return (printf("-error\n"), 0);
+				return (ft_putstr_fd("\n\n\nminishell: syntax error !!!!\n\n\n", 2), 0);
 		}
 		else if (line[i] == 39)
 		{
 			i++;
 			if (next_quote(line, &i, 39) == 1)
-				return (printf("-error\n"), 0);
+				return (ft_putstr_fd("\n\n\nminishell: syntax error !!!!\n\n\n", 2), 0);
 		}
 		i++;
 	}

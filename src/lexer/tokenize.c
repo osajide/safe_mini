@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 22:44:57 by osajide           #+#    #+#             */
-/*   Updated: 2023/05/31 21:16:28 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/02 18:24:11 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ char	*handle_quote(t_list **lst, char *line, int *pos, int ascii)
 	char	*temp;
 	int		start;
 
-	(*pos)++;
 	start = *pos;
+	(*pos)++;
 	while (line[*pos] && line[*pos] != ascii)
 		(*pos)++;
-	temp = ft_substr(line, start, *pos);
+	temp = ft_substr(line, start, *pos + 1);
 	return (temp);
 }
 
@@ -123,41 +123,14 @@ void	if_string(char *line, t_list **lst, int *pos)
 void	if_single_quote(char *line, t_list **lst, int *pos)
 {
 	char	*temp;
-	char	*temp2;
 	int		start;
 
 	temp = NULL;
-	temp2 = NULL;
 	temp = handle_quote(lst, line, pos, 39);
-	start = *pos;
-	(*pos)++;
-	while (line[*pos] && line[*pos]!= '$' && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != ' ')
-		(*pos)++;
-	temp2 = ft_strjoin(temp, ft_substr(line, start, *pos));
-	if (temp2 && *temp2)
-		ft_lstadd_back(lst, ft_lstnew(temp2, IN_SQ, WORD));
-}
-
-void	if_double_quote(char *line, t_list **lst, int *pos)
-{
-	char	*temp;
-	char	*temp1;
-	char	*temp3;
-	int		start;
-
-	temp = NULL;
-	temp1 = NULL;
-	start = *pos;
-	(*pos)++;
-	while (line[*pos] && line[*pos] != 34)
-		(*pos)++;
-	temp = ft_substr(line, start, *pos + 1);
 	(*pos)++;
 	if (line[*pos] && line[*pos] != ' ')
 	{
-		printf("aaaa\n");
 		start = *pos;
-		// (*pos)++;
 		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>')
 		{
 			if (line[*pos] == 34)
@@ -166,10 +139,33 @@ void	if_double_quote(char *line, t_list **lst, int *pos)
 				skip_inside_quotes(line, pos, 39);
 			(*pos)++;
 		}
-		temp1 = ft_strjoin(temp, ft_substr(line, start, *pos + 1));
-		if (temp1 && *temp1)
-			ft_lstadd_back(lst, ft_lstnew(temp1, NOTHING, WORD));
+		temp = ft_strjoin(temp, ft_substr(line, start, *pos));
 	}
-	else
-		ft_lstadd_back(lst, ft_lstnew(temp, IN_DQ, WORD));
+	ft_lstadd_back(lst, ft_lstnew(temp, IN_SQ, WORD));
+	(*pos)--;
+}
+
+void	if_double_quote(char *line, t_list **lst, int *pos)
+{
+	char	*temp;
+	int		start;
+
+	temp = NULL;
+	temp = handle_quote(lst, line, pos, 34);
+	(*pos)++;
+	if (line[*pos] && line[*pos] != ' ')
+	{
+		start = *pos;
+		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>')
+		{
+			if (line[*pos] == 34)
+				skip_inside_quotes(line, pos, 34);
+			else if (line[*pos] == 39)
+				skip_inside_quotes(line, pos, 39);
+			(*pos)++;
+		}
+		temp = ft_strjoin(temp, ft_substr(line, start, *pos));
+	}
+	ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
+	(*pos)--;
 }

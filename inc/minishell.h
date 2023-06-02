@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:18:34 by osajide           #+#    #+#             */
-/*   Updated: 2023/05/27 12:12:49 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/06/02 16:00:28 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <sys/types.h>
 # include <readline/readline.h>
 # include "../libft/libft.h"
-//# include <readline/hestory.h>
+# include <readline/history.h>
 # include "builtin_cmd.h"
 # include "lexer.h"
 # include "parser.h"

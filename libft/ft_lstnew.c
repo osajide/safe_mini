@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 18:54:22 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/21 19:25:22 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/02 16:01:13 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_list	*ft_lstnew(void *content, int state, int token)
 	data->state = state;
 	data->token = token,
 	node->data = data;
+	node->prev = NULL;
 	node->next = NULL;
 	return (node);
 }
