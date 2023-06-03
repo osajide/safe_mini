@@ -1,42 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 15:59:07 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/03 20:07:17 by osajide          ###   ########.fr       */
+/*   Created: 2023/06/03 20:01:06 by osajide           #+#    #+#             */
+/*   Updated: 2023/06/03 20:01:40 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef TYPES_H
+# define TYPES_H
 
-# include "types.h"
-
-typedef struct s_command
+typedef enum e_state
 {
-	char *cmd;
-	char **arg;
-	int	infile;
-	int	outfile;
-}	t_command;
+	IN_SQ = 1,
+	IN_DQ,
+	NOTHING
+}	t_state;
 
-typedef struct s_redir
+typedef enum e_token
 {
-	char	*arg;
-	t_token	type;
-}	t_redir;
+	WORD = 1,
+	ENV,
+	WHITE_SPACE,
+	SINGLE_Q,
+	DOUBLE_Q,
+	PIPE,
+	REDIR_IN,
+	REDIR_OUT,
+	APPEND_REDIR,
+	HEREDOC
+}	t_token;
 
-typedef struct s_cmd
+typedef struct s_data
 {
-	t_command	*command;
-	t_redir		redir_left;
-	t_redir		redir_right;
-	struct s_cmd		*next;
-}	t_cmd;
+	char	*content;
+	t_state state;
+	t_token	token;
+}	t_data;
 
-t_list  *return_final_list(t_list *lst);
+typedef struct s_list
+{
+	t_data			*data;
+	struct s_list	*next;
+	struct s_list	*prev;
+}	t_list;
 
 #endif

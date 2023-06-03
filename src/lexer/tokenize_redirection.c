@@ -6,11 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 00:01:48 by osajide           #+#    #+#             */
-/*   Updated: 2023/05/31 21:20:30 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/03 20:08:11 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/lexer.h"
 
 void	input_redirection(char *line, t_list **lst, int *pos)
 {

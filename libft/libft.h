@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 11:29:35 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/24 16:13:13 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:29:46 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "../inc/lexer.h"
+# include "../inc/types.h"
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -51,12 +51,5 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-t_list	*ft_lstnew(void *content, int state, int token);
-void	ft_lstadd_front(t_list **lst, t_list *new_node);
-t_list	*ft_lstlast(t_list *lst);
-int		ft_lstsize(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new_node);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
 
 #endif

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cmd.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:50:25 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/25 16:25:51 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:24:55 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTIN_CMD_H
 # define BUILTIN_CMD_H
 
-# include "minishell.h"
+# include "types.h"
 
 /************* BUILIN COMMAND ************/
 

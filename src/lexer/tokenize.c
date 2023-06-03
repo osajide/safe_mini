@@ -6,13 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 22:44:57 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/02 18:24:11 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/03 20:28:11 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../../inc/lexer.h"
 
 int	look_for_char(char *s)
 {

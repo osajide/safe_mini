@@ -6,14 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:10:49 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/02 18:11:13 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/03 19:57:38 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
-
+#include "../../inc/lexer.h"
 
 void	loop_on_input(char *line, t_list **lst)
 {

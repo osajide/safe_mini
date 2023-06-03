@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parcer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:46:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/27 15:16:57 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/06/03 19:17:52 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "minishell.h"
+#include "../../inc/minishell.h"
 
 // t_cmd	*put_conten_in_cmd(t_list *lst)
 // {

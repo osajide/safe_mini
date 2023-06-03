@@ -6,13 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/01 16:06:04 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/03 20:27:29 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 void	clear_lst(t_list *lst)
 {
@@ -80,8 +78,6 @@ void	minishell(void)
 			loop_on_input(line, &lst);
 			print_linked_list(lst);
 			analyzer(lst);
-			// exit(0);
-			// check_type_cmd(lst);
 			free(line);
 			clear_lst(lst);
 			lst  = 0;

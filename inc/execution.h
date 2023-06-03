@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:56:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/26 12:56:49 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/06/03 19:52:50 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
-
-# include "minishell.h"
 
 typedef struct s_exec
 {

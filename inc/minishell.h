@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:18:34 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/02 16:00:28 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/03 20:27:21 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,8 @@
 # include <readline/readline.h>
 # include "../libft/libft.h"
 # include <readline/history.h>
-# include "builtin_cmd.h"
+# include "types.h"
 # include "lexer.h"
-# include "parser.h"
-// typedef enum state
-// {
-// 	IN_SQ = 1,
-// 	IN_DQ = 2,
-	
-// }	state;
-
-// typedef struct s_data
-// {
-// 	char	*content;
-// 	state 	state;
-// 	int		type;
-// }	t_data;
-
-/************ init *****************/
-void	welcoming_msg(void);
 
 /************ prompt ***************/
 
@@ -60,6 +43,6 @@ void	minishell(void);
 ;
 /************ CHECK TYPE COMMAND *************/
 
-void check_type_cmd(t_list *lst);
+// void check_type_cmd(t_list *lst);
 
 #endif

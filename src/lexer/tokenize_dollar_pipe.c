@@ -6,11 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:41:17 by osajide           #+#    #+#             */
-/*   Updated: 2023/05/31 19:31:35 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/03 20:08:17 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/lexer.h"
 #include <stdio.h>
 
 int	only_env(char *s)
