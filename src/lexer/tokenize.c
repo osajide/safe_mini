@@ -6,11 +6,12 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 22:44:57 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/03 20:28:11 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/05 18:25:28 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/lexer.h"
+#include <stdio.h>
 
 int	look_for_char(char *s)
 {
@@ -115,7 +116,8 @@ void	if_string(char *line, t_list **lst, int *pos)
 	}
 	(*pos)--;
 	temp = ft_substr(line, start, *pos + 1);
-	ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
+	if (temp && *temp)
+		ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
 }
 
 void	if_single_quote(char *line, t_list **lst, int *pos)
@@ -129,7 +131,7 @@ void	if_single_quote(char *line, t_list **lst, int *pos)
 	if (line[*pos] && line[*pos] != ' ')
 	{
 		start = *pos;
-		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>')
+		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != ' ')
 		{
 			if (line[*pos] == 34)
 				skip_inside_quotes(line, pos, 34);
@@ -139,7 +141,7 @@ void	if_single_quote(char *line, t_list **lst, int *pos)
 		}
 		temp = ft_strjoin(temp, ft_substr(line, start, *pos));
 	}
-	ft_lstadd_back(lst, ft_lstnew(temp, IN_SQ, WORD));
+	ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
 	(*pos)--;
 }
 
@@ -154,7 +156,7 @@ void	if_double_quote(char *line, t_list **lst, int *pos)
 	if (line[*pos] && line[*pos] != ' ')
 	{
 		start = *pos;
-		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>')
+		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != ' ')
 		{
 			if (line[*pos] == 34)
 				skip_inside_quotes(line, pos, 34);

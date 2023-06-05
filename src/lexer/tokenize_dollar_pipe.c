@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:41:17 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/03 20:08:17 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/05 17:52:32 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ void	if_dollar_sign(char *line, t_list **lst, int *pos)
 		ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, ENV));
 	else
 		ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
-	printf("dollar before = %d\n", line[*pos]);
-	// (*pos)--;
-	// printf("dollar after[%d] = %c\n", *pos, line[*pos]);
+	(*pos)--;
 }
 
 void	if_pipe(char *line, t_list **lst, int *pos)

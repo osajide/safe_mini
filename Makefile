@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/01 16:00:06 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/05 18:25:56 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ EXECUTDIR	=	execution
 SRCMAIN		=	minishell main prompt check_input check_type_cmd
 BUILTSRC	:=	cd echo pwd
 LEXERSRC	:=	lexer tokenize tokenize_dollar_pipe tokenize_redirection analyzer
-PARSERSRC	:=	
+PARSERSRC	:=	parser parser_utils
 EXECUTSRC	:=	
 
 OBJ			:=	$(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRCMAIN)))
@@ -42,7 +42,7 @@ EXECUTSRC	:=	$(addprefix $(SRCDIR)/$(EXECUTDIR)/, $(addsuffix .c, $(EXECUTSRC)))
 ############## compilation ###############
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -lreadline -g #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -lreadline #-g -fsanitize=address
 
 
 C_LIBFT		=	make -C libft

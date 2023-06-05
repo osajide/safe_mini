@@ -6,11 +6,12 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/03 20:27:29 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/05 18:29:39 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+#include "../inc/parser.h"
 
 void	clear_lst(t_list *lst)
 {
@@ -67,6 +68,7 @@ void	minishell(void)
 {
 	char	*line;
 	t_list	*lst;
+	t_cmd	*cmd;
 
 	lst = NULL;
 	while (1)
@@ -76,11 +78,17 @@ void	minishell(void)
 		{	
 			check_input(line);
 			loop_on_input(line, &lst);
-			print_linked_list(lst);
-			analyzer(lst);
-			free(line);
-			clear_lst(lst);
-			lst  = 0;
+			if (lst)
+			{
+				if (!analyzer(lst))
+				{
+					print_linked_list(lst);
+					cmd = fill_struct_cmd(lst);
+				}
+				free(line);
+				clear_lst(lst);
+				lst  = 0;
+			}
 		}
 	}
 }
