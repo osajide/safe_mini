@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:53:55 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/03 22:20:40 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/05 21:38:40 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	loop_on_input(char *line, t_list **lst);
 void	if_string(char *line, t_list **lst, int *pos);
 char	*handle_quote(t_list **lst, char *line, int *pos, int ascii);
+char	*ft_remove_char(char *s, int ascii);
 void	if_single_quote(char *line, t_list **lst, int *pos);
 void	if_double_quote(char *line, t_list **lst, int *pos);
 void	input_redirection(char *line, t_list **lst, int *pos);

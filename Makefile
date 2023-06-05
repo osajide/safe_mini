@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/05 19:10:28 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/05 21:57:14 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ LEXERSRC	:=	$(addprefix $(SRCDIR)/$(LEXERDIR)/, $(addsuffix .c, $(LEXERSRC)))
 PARSEROBJ	:=	$(addprefix $(OBJDIR)/$(PARSERDIR)/, $(addsuffix .o, $(PARSERSRC)))
 PARSERSRC	:=	$(addprefix $(SRCDIR)/$(PARSERDIR)/, $(addsuffix .c, $(PARSERSRC)))
 EXPANDEROBJ	:=	$(addprefix $(OBJDIR)/$(EXPANDERDIR)/, $(addsuffix .o, $(EXPANDERSRC)))
-EXPANDERSRC	:=	$(addprefix $(SRCDIR)/$(PARSERDIR)/, $(addsuffix .c, $(PARSERSRC)))
+EXPANDERSRC	:=	$(addprefix $(SRCDIR)/$(EXPANDERDIR)/, $(addsuffix .c, $(EXPANDERSRC)))
 EXECUTOBJ	:=	$(addprefix $(OBJDIR)/$(EXECUTDIR)/, $(addsuffix .o, $(EXECUTSRC)))
 EXECUTSRC	:=	$(addprefix $(SRCDIR)/$(EXECUTDIR)/, $(addsuffix .c, $(EXECUTSRC)))
 
@@ -70,11 +70,12 @@ $(OBJDIR)/%.o:	$(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)/$(BUILTDIR)
 	@mkdir -p $(OBJDIR)/$(LEXERDIR)
 	@mkdir -p $(OBJDIR)/$(PARSERDIR)
+	@mkdir -p $(OBJDIR)/$(EXPANDERDIR)
 	@$(CC) $(CFALGS) $< -c -I $(INC) -o $@
 
 all:	$(NAME)
 
-$(NAME):	$(OBJ) $(BUILTOBJ) $(LEXEROBJ) $(PARSEROBJ) $(EXECUTOBJ)
+$(NAME):	$(OBJ) $(BUILTOBJ) $(LEXEROBJ) $(PARSEROBJ) $(EXPANDEROBJ) $(EXECUTOBJ)
 	@$(C_LIBFT) -s
 	@$(C_GNL) -s
 	@$(CC) $(CFLAGS) $^ $(AR_LIBFT) $(AR_GNL) -I $(INC) -o $@

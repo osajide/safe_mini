@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:10:49 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/05 15:19:57 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/05 22:37:01 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	loop_on_input(char *line, t_list **lst)
 	i = 0;
 	while (line[i])
 	{
-		while (line[i] && line[i] == 32)
+		while (line[i] && line[i] == 32 || line[i] == '\t')
 			i++;
 		if (line[i] == 39)
 			if_single_quote(line, lst, &i);

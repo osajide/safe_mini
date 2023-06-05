@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 22:44:57 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/05 18:25:28 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/05 22:38:20 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	if_string(char *line, t_list **lst, int *pos)
 
 	temp = NULL;
 	start = *pos;
-	while (line[*pos] && line[*pos] != ' ' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != '|')
+	while (line[*pos] && line[*pos] != ' ' && line[*pos] != '\t' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != '|')
 	{
 		if (line[*pos] == 34)
 			skip_inside_quotes(line, pos, 34);
@@ -128,7 +128,7 @@ void	if_single_quote(char *line, t_list **lst, int *pos)
 	temp = NULL;
 	temp = handle_quote(lst, line, pos, 39);
 	(*pos)++;
-	if (line[*pos] && line[*pos] != ' ')
+	if (line[*pos] && line[*pos] != ' ' && line[*pos] != '\t')
 	{
 		start = *pos;
 		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != ' ')
@@ -153,7 +153,7 @@ void	if_double_quote(char *line, t_list **lst, int *pos)
 	temp = NULL;
 	temp = handle_quote(lst, line, pos, 34);
 	(*pos)++;
-	if (line[*pos] && line[*pos] != ' ')
+	if (line[*pos] && line[*pos] != ' ' && line[*pos] != '\t')
 	{
 		start = *pos;
 		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != ' ')

@@ -6,12 +6,13 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/05 19:16:52 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/05 21:53:22 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 #include "../inc/parser.h"
+#include "../inc/expander.h"
 
 void	clear_lst(t_list *lst)
 {
@@ -86,6 +87,7 @@ void	minishell(void)
 					print_linked_list(lst);
 					cmd = fill_struct_cmd(lst, &cmd_count);
 				}
+				cmd = expander(cmd, cmd_count);
 				free(line);
 				clear_lst(lst);
 				lst  = 0;
