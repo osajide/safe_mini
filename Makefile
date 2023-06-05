@@ -6,12 +6,21 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/05 18:25:56 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/05 19:10:28 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
 INC		=	inc
+
+############ Colors ######################
+
+RED = \033[1;31m
+GREEN = \033[1;32m
+SPLASH = \033[5m
+BLUE = \033[1;34m
+YELLOW = \033[1;33m
+RESET = \033[0m
 
 ############ SRCS & DIR ##################
 
@@ -20,12 +29,14 @@ SRCDIR		=	src
 BUILTDIR	=	builting_cmd
 LEXERDIR	=	lexer
 PARSERDIR	=	parser
+EXPANDERDIR	=	expander
 EXECUTDIR	=	execution
 
 SRCMAIN		=	minishell main prompt check_input check_type_cmd
 BUILTSRC	:=	cd echo pwd
 LEXERSRC	:=	lexer tokenize tokenize_dollar_pipe tokenize_redirection analyzer
 PARSERSRC	:=	parser parser_utils
+EXPANDERSRC	:=	expander
 EXECUTSRC	:=	
 
 OBJ			:=	$(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRCMAIN)))
@@ -36,6 +47,8 @@ LEXEROBJ	:=	$(addprefix $(OBJDIR)/$(LEXERDIR)/, $(addsuffix .o, $(LEXERSRC)))
 LEXERSRC	:=	$(addprefix $(SRCDIR)/$(LEXERDIR)/, $(addsuffix .c, $(LEXERSRC)))
 PARSEROBJ	:=	$(addprefix $(OBJDIR)/$(PARSERDIR)/, $(addsuffix .o, $(PARSERSRC)))
 PARSERSRC	:=	$(addprefix $(SRCDIR)/$(PARSERDIR)/, $(addsuffix .c, $(PARSERSRC)))
+EXPANDEROBJ	:=	$(addprefix $(OBJDIR)/$(EXPANDERDIR)/, $(addsuffix .o, $(EXPANDERSRC)))
+EXPANDERSRC	:=	$(addprefix $(SRCDIR)/$(PARSERDIR)/, $(addsuffix .c, $(PARSERSRC)))
 EXECUTOBJ	:=	$(addprefix $(OBJDIR)/$(EXECUTDIR)/, $(addsuffix .o, $(EXECUTSRC)))
 EXECUTSRC	:=	$(addprefix $(SRCDIR)/$(EXECUTDIR)/, $(addsuffix .c, $(EXECUTSRC)))
 
@@ -51,7 +64,8 @@ AR_LIBFT	=	libft/libft.a
 AR_GNL		=	gnl/get_next_line
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c 
-	@echo "compile >>>>> $^"
+#	@echo "compile >>>>> $^"
+	@printf "$(GREEN) compile >>>>> $(notdir $<) $(RESET)\n"
 	@mkdir -p $(OBJDIR)
 	@mkdir -p $(OBJDIR)/$(BUILTDIR)
 	@mkdir -p $(OBJDIR)/$(LEXERDIR)
@@ -64,6 +78,7 @@ $(NAME):	$(OBJ) $(BUILTOBJ) $(LEXEROBJ) $(PARSEROBJ) $(EXECUTOBJ)
 	@$(C_LIBFT) -s
 	@$(C_GNL) -s
 	@$(CC) $(CFLAGS) $^ $(AR_LIBFT) $(AR_GNL) -I $(INC) -o $@
+	@printf "\n\n$(SPLASH) $(RED)              ------------- Minishell Ready -------------$(RESET)\n\n\n"
 
 clean:
 	@$(C_LIBFT) clean

@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:46:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/05 18:40:46 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/05 19:56:29 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,16 @@ int	command_number(t_list *lst)
 
 char	*get_command(t_list *lst, int *pos)
 {
-	t_list	*temp;
-
-	temp = lst;
-	while (temp)
+	while (lst && lst->data->token != PIPE)
 	{
-		if (temp->data->token == WORD)
-			return (temp->data->content);
-		temp = temp->next;
-		(*pos)++;
+		if (lst->data->token != WORD && lst->data->token != ENV)
+		{
+			lst = lst->next->next;
+			(*pos)++;
+			(*pos)++;
+		}
+		if (lst && (lst->data->token == WORD || lst->data->token == ENV))
+			return (lst->data->content);
 	}
 	return (NULL);
 }
@@ -135,18 +136,17 @@ void	print_parser(t_cmd *cmd, int count_cmd)
 	}
 }
 
-t_cmd	*fill_struct_cmd(t_list *lst)
+t_cmd	*fill_struct_cmd(t_list *lst, int *cmd_count)
 {
 	t_cmd	*cmd;
-	int		command_count;
 	int		i;
 	int		pos;
 	
-	command_count = command_number(lst);
-	cmd = malloc(command_count * sizeof(t_cmd));
+	*cmd_count = command_number(lst);
+	cmd = malloc(*cmd_count * sizeof(t_cmd));
 	pos = 0;
 	i = 0;
-	while (i < command_count)
+	while (i < *cmd_count)
 	{
 		cmd[i].command = fill_struct_command(lst, &pos);
 		cmd[i].redir = fill_struct_redir(lst);
@@ -157,7 +157,6 @@ t_cmd	*fill_struct_cmd(t_list *lst)
 			lst = lst->next;
 		pos = 0;
 	}
-	print_parser(cmd, command_count);
+	print_parser(cmd, *cmd_count);
 	return (cmd);
 }
-

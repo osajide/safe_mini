@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/05 18:29:39 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/05 19:16:52 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	minishell(void)
 	char	*line;
 	t_list	*lst;
 	t_cmd	*cmd;
+	int		cmd_count;
 
 	lst = NULL;
 	while (1)
@@ -83,7 +84,7 @@ void	minishell(void)
 				if (!analyzer(lst))
 				{
 					print_linked_list(lst);
-					cmd = fill_struct_cmd(lst);
+					cmd = fill_struct_cmd(lst, &cmd_count);
 				}
 				free(line);
 				clear_lst(lst);
