@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/06 16:09:35 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/06 19:43:41 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,9 @@ clean:
 	@$(C_GNL) clean
 	@rm -rf *.o
 	@rm -rf $(OBJDIR)
+	
 fclean: clean
+
 	@$(C_LIBFT) fclean
 	@$(C_GNL) fclean
 	@rm -rf $(NAME)
