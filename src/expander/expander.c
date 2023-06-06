@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:11:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/05 22:36:29 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/06 16:09:08 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,14 @@ void	expand_cmd(t_command *command)
 	expand_command_name(command->cmd);
 }
 
-t_cmd	*expander(t_cmd *cmd, int cmd_count)
+t_cmd	*expander(t_cmd *cmd, int cmd_count, char **env)
 {
-	int	i;
+	int		i;
+	t_env	*env_lst;
 
 	i = 0;
+	env_lst = NULL;
+	convert_to_env_list(env, &env_lst);
 	while (i < cmd_count)
 	{
 		expand_cmd(cmd[i].command);

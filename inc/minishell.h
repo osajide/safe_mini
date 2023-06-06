@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:18:34 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/03 20:27:21 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/06 15:18:13 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		check_pipes(char *str, char c);
 
 /************ main function ********/
 
-void	minishell(void);
+void	minishell(char **env);
 ;
 /************ CHECK TYPE COMMAND *************/
 
