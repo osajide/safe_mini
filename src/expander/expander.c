@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:11:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/06 20:24:00 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/06 22:05:22 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*handle_dollar_sign_inside_d_quotes(char *s, int *pos, t_env *env_lst)
 	int		start;
 
 	var = NULL;
-	temp = NULL;
 	(*pos)++;
 	if (s[*pos] == ' ')
 	{
@@ -62,7 +61,6 @@ void	expand_inside_single_quotes(char *s, char **temp, int *pos)
 	while (s[*pos] && s[*pos] != 39)
 		(*pos)++;
 	*temp = ft_strjoin(*temp, ft_substr(s, start, *pos));
-	// (*pos)++;
 }
 
 void	expand_inside_double_quotes(char *s, char **temp, int *pos, t_env *env_lst)
@@ -96,13 +94,17 @@ void	expand_command_name(char *s, t_env *env_lst)
 		if (s[i] == 39)
 		{
 			expand_inside_single_quotes(s, &temp, &i);
-			printf("\t\t\t\t\t1)-temp = %s\n", temp);
-			printf("======> s[%d] = %c | %d\n", i, s[i], s[i]);
+			printf("\t\t\t1)-temp = %s\n", temp);
 		}
 		else if (s[i] == 34)
 		{
 			expand_inside_double_quotes(s, &temp, &i, env_lst);
-			printf("\t\t\t\t\t2)-temp = %s\n", temp);
+			printf("\t\t\t2)-temp = %s\n", temp);
+		}
+		else if (s[i] == '$')
+		{
+			temp = ft_strjoin(temp, handle_dollar_sign(s, &temp, &i, env_lst));
+			printf("\t\t\t3)-temp = %s\n", temp);
 		}
 		i++;
 	}
