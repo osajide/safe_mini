@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
+#    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/16 13:31:51 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/05/24 16:12:00 by ayakoubi         ###   ########.fr        #
+#    Updated: 2023/06/06 23:49:28 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC		=	ft_isalpha.c \
 			ft_strdup.c \
 			ft_substr.c \
 			ft_strjoin.c \
+			ft_join_char.c \
 			ft_strtrim.c \
 			ft_split.c \
 			ft_itoa.c \

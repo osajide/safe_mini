@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_join_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 13:07:38 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/06 23:52:10 by osajide          ###   ########.fr       */
+/*   Created: 2023/06/06 23:44:59 by osajide           #+#    #+#             */
+/*   Updated: 2023/06/06 23:52:34 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
-#include <string.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_join_char(char *s, char c)
 {
-	int	i;
-	int	j;
-	char	*new;
+	char	*join;
+	int		i;
 
-	if (!s1)
-		s1 = ft_calloc(1, 1);
-	else if (!s2)
-		return ((char *)s1);
+	if (!s)
+		s = ft_calloc(1, 1);
+	join = malloc(ft_strlen(s) + 2);
 	i = 0;
-	j = 0;
-	new = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!new)
-		return (NULL);
-	while (s1[i])
+	while (s[i])
 	{
-		new[i++] = s1[j++];
+		join[i] = s[i];
+		i++;
 	}
-	j = 0;
-	while (s2[j])
-		new[i++] = s2[j++];
-	new[i] = '\0';
-	free((char *)s1);
-	return (new);
+	join[i++] = c;
+	join[i] = '\0';
+	printf("join = %s\n", join);
+	free(s);
+	return (join);
 }

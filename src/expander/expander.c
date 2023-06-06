@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:11:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/06 22:05:22 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/06 23:54:34 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	expand_command_name(char *s, t_env *env_lst)
 	temp = NULL;
 	while (s[i])
 	{
+		printf("s[%d] = %c | %d\n", i, s[i], s[i]);
 		if (s[i] == 39)
 		{
 			expand_inside_single_quotes(s, &temp, &i);
@@ -106,6 +107,11 @@ void	expand_command_name(char *s, t_env *env_lst)
 			temp = ft_strjoin(temp, handle_dollar_sign(s, &temp, &i, env_lst));
 			printf("\t\t\t3)-temp = %s\n", temp);
 		}
+		else
+		{
+			temp = ft_join_char(temp, s[i]);
+			printf("\t\t\t4)-temp = %s\n", temp);
+		}
 		i++;
 	}
 }
@@ -113,15 +119,10 @@ void	expand_command_name(char *s, t_env *env_lst)
 void	expand_cmd(t_command *command, t_env *env_lst)
 {
 	expand_command_name(command->cmd, env_lst);
-
-
-
-
-
-
-
-
 	
+
+
+
 }
 
 t_cmd	*expander(t_cmd *cmd, int cmd_count, char **env)
