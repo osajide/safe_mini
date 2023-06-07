@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:11:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/07 21:56:55 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/07 22:09:05 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ char	*expand_inside_double_quotes(char *s, int *pos, t_env *env_lst)
 			(*pos)--;
 		}
 		else
-		{
 			temp = ft_join_char(temp, s[*pos]);
-		}
 		(*pos)++;
 	}
 	return (temp);
