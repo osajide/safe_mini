@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/06 21:39:04 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/07 16:35:14 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRCMAIN		=	minishell main prompt check_input check_type_cmd
 BUILTSRC	:=	cd echo pwd
 LEXERSRC	:=	lexer tokenize tokenize_dollar_pipe tokenize_redirection analyzer
 PARSERSRC	:=	parser parser_utils
-EXPANDERSRC	:=	expander convert_to_env_lst expand_dollar_sign
+EXPANDERSRC	:=	expander convert_to_env_lst expand_dollar_sign expand_cmd
 EXECUTSRC	:=	
 
 OBJ			:=	$(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRCMAIN)))
@@ -55,7 +55,7 @@ EXECUTSRC	:=	$(addprefix $(SRCDIR)/$(EXECUTDIR)/, $(addsuffix .c, $(EXECUTSRC)))
 ############## compilation ###############
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -lreadline #-g -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -lreadline -g -fsanitize=address
 
 
 C_LIBFT		=	make -C libft

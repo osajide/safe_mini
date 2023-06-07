@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 23:44:59 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/06 23:52:34 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/07 16:37:12 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	*ft_join_char(char *s, char c)
 	}
 	join[i++] = c;
 	join[i] = '\0';
-	printf("join = %s\n", join);
 	free(s);
 	return (join);
 }
