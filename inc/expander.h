@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:51:02 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/07 16:48:27 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/07 19:23:57 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ void	convert_to_env_list(char **env, t_env **env_lst);
 
 /*************** expander **************/
 
-char	*handle_dollar_sign(char *s, char **temp, int *pos, t_env *env_lst);
+char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst);
 char	*handle_dollar_sign_inside_d_quotes(char *s, int *pos, t_env *env_lst);
-void	expand_inside_single_quotes(char *s, char **temp, int *pos);
-void	expand_inside_double_quotes(char *s, char **temp, int *pos, t_env *env_lst);
-char	*expand_command_name(char *s, t_env *env_lst);
+char	*expand_inside_single_quotes(char *s, int *pos);
+char	*expand_inside_double_quotes(char *s, int *pos, t_env *env_lst);
+char	*expand_string(char *s, t_env *env_lst);
 char	**expand_command_args(char **s, t_env *env_lst);
 void	expand_cmd(t_command *command, t_env *env_lst);
+char	*handle_dollar_sign_inside_d_quotes(char *s, int *pos, t_env *env_lst);
 
 #endif
