@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:33:29 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/07 22:07:21 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/08 17:09:08 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 	(*pos)++;
 	if (!s[*pos])
 		return ((*pos)-- , ft_join_char(temp, '$'));
+	else if (s[*pos] == 39 || s[*pos] == 34)
+		return ((*pos)--, ft_join_char(temp, '\0'));
 	if (!((s[*pos] >= 'A' && s[*pos] <= 'Z') || (s[*pos] >= 'a' && s[*pos] <= 'z') || s[*pos] == '_'))
 	{
 		(*pos)++;
@@ -50,7 +52,7 @@ char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 			return (temp);
 		}
 	}
-	return (temp);
+	return ((*pos)--, temp);
 }
 
 char	*handle_dollar_sign_inside_d_quotes(char *s, int *pos, t_env *env_lst)

@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/07 19:13:07 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/08 16:41:28 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRCMAIN		=	minishell main prompt check_input check_type_cmd
 BUILTSRC	:=	cd echo pwd
 LEXERSRC	:=	lexer tokenize tokenize_dollar_pipe tokenize_redirection analyzer
 PARSERSRC	:=	parser parser_utils
-EXPANDERSRC	:=	expander convert_to_env_lst expand_dollar_sign expand_cmd
+EXPANDERSRC	:=	expander convert_to_env_lst expand_dollar_sign expand_cmd \
+				expand_inside_quotes
 EXECUTSRC	:=	
 
 OBJ			:=	$(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRCMAIN)))

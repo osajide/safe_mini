@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:26:45 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/07 22:07:56 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/08 16:17:39 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ void	expand_cmd(t_command *command, t_env *env_lst)
 {
 	command->cmd = expand_string(command->cmd, env_lst);
 	printf("\n---------------------------------------------------------------------\n");
-	printf("\n\t\t\t\033[1;32mcommand->cmd =\033[0m %s\n", command->cmd);
+	printf("\n\t\t\t\033[1;32mcommand->cmd =\033[0m (%s)\n", command->cmd);
 	printf("\n---------------------------------------------------------------------\n");
 	command->arg = expand_command_args(command->arg, env_lst);
 	int i = 0;
 	while (command->arg[i])
 	{
 		printf("\n---------------------------------------------------------------------\n");
-		printf("\n\t\t\t\033[1;32mcommand->arg[%d] =\033[0m %s\n", i, command->arg[i]);
+		printf("\n\t\t\t\033[1;32mcommand->arg[%d] =\033[0m (%s)\n", i, command->arg[i]);
 		printf("\n---------------------------------------------------------------------\n");
 		i++;
 	}
