@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:26:45 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/08 16:17:39 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/08 19:39:57 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,35 +49,37 @@ char	*expand_string(char *s, t_env *env_lst)
 	return (temp);
 }
 
-char	**expand_command_args(char **s, t_env *env_lst)
+t_args	*expand_command_args(t_args *args, t_env *env_lst)
 {
-	char	*temp;
+	t_args	*temp;
 	int		i;
 	
 	i = 0;
-	temp = NULL;
-	while (s[i])
+	temp = args;
+	while (temp)
 	{
-		s[i] = expand_string(s[i], env_lst);
-		i++;
+		temp->argument = expand_string(temp->argument, env_lst);
+		temp = temp->next;
 	}
-	return (s);
+	return (args);
 }
 
-void	expand_cmd(t_command *command, t_env *env_lst)
+void	expand_cmd(t_cmd *cmd, t_env *env_lst)
 {
-	command->cmd = expand_string(command->cmd, env_lst);
+	t_args	*temp;
+	
+	cmd->command = expand_string(cmd->command, env_lst);
 	printf("\n---------------------------------------------------------------------\n");
-	printf("\n\t\t\t\033[1;32mcommand->cmd =\033[0m (%s)\n", command->cmd);
+	printf("\n\t\t\t\033[1;32mcmd->command =\033[0m (%s)\n", cmd->command);
 	printf("\n---------------------------------------------------------------------\n");
-	command->arg = expand_command_args(command->arg, env_lst);
-	int i = 0;
-	while (command->arg[i])
+	cmd->args = expand_command_args(cmd->args, env_lst);
+	temp = cmd->args;
+	while (temp)
 	{
 		printf("\n---------------------------------------------------------------------\n");
-		printf("\n\t\t\t\033[1;32mcommand->arg[%d] =\033[0m (%s)\n", i, command->arg[i]);
+		printf("\n\t\t\t\033[1;32mcommand->args->argument =\033[0m (%s)\n", temp->argument);
 		printf("\n---------------------------------------------------------------------\n");
-		i++;
+		temp = temp->next;
 	}
 
 

@@ -6,11 +6,12 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:46:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/05 19:56:29 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/08 19:37:21 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parser.h"
+#include <stdio.h>
 
 int	command_number(t_list *lst)
 {
@@ -42,44 +43,25 @@ char	*get_command(t_list *lst, int *pos)
 	return (NULL);
 }
 
-char	**get_arg(t_list *lst, int *pos)
+t_args	*get_arg(t_list *lst, int *pos)
 {
-	char	**arg;
+	t_args	*args;
 	int		i;
 	int		len;
 	t_list	*tmp;
+	t_args	*tmp_args;
 	
+	args = NULL;
 	i = -1;
 	while ((++i <= (*pos)) && lst)
 		lst = lst->next;
 	tmp = lst;
-	len = 0;
-	while (tmp && (tmp->data->token == WORD || tmp->data->token == ENV))
-	{
-		len++;
-		tmp = tmp->next;
-	}
-	arg = malloc(sizeof(char *) * (len + 1));
-	i = 0;
 	while (lst && (lst->data->token == WORD || lst->data->token == ENV))
 	{
-		arg[i++] = lst->data->content;
+		add_args_node_back(&args, new_args_node(lst->data->content));
 		lst = lst->next;
 	}
-	arg[i] = NULL;
-	return (arg);
-}
-
-t_command	*fill_struct_command(t_list *lst, int *pos)
-{
-	t_command	*command;
-
-	command = malloc(sizeof(t_command));
-	if (!command)
-		return (NULL);
-	command->cmd = get_command(lst, pos);
-	command->arg = get_arg(lst, pos);
-	return (command);
+	return (args);
 }
 
 t_redir	*fill_struct_redir(t_list *lst)
@@ -104,17 +86,22 @@ void	print_parser(t_cmd *cmd, int count_cmd)
 {
 	int i;
 	int j;
+	t_args *tmp_args;
 
 	i = -1;
+	tmp_args = cmd->args;
 	while (++i < count_cmd)
 	{
 		if (cmd[i].command)
 		{
 			printf("\n******** COMMAND [%d]**************\n\n", i + 1);
-			printf("\tcommand  = %s\n", cmd[i].command->cmd);
+			printf("\tcommand  = %s\n", cmd[i].command);
 			j = -1;
-			while (cmd[i].command->arg[++j])
-				printf("\targument = %s\n", cmd[i].command->arg[j]);
+			while (tmp_args)
+			{
+				printf("\t\033[1;32margument =\033[0m %s\n", tmp_args->argument);
+				tmp_args = tmp_args->next;
+			}
 		}
 		if (cmd[i].redir)
 		{
@@ -148,7 +135,9 @@ t_cmd	*fill_struct_cmd(t_list *lst, int *cmd_count)
 	i = 0;
 	while (i < *cmd_count)
 	{
-		cmd[i].command = fill_struct_command(lst, &pos);
+		cmd[i].command = get_command(lst, &pos);
+		cmd[i].args = get_arg(lst, &pos);
+		// printf("\n\n\n\n\n\n\n\n\n ------>>>>>> cmd[%d].command->args->argument = %s\n\n\n\n\n\n\n\n\n", i, cmd[i].command->args->argument);
 		cmd[i].redir = fill_struct_redir(lst);
 		i++;
 		while (lst && lst->data->token != PIPE)

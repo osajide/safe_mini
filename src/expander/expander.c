@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:11:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/08 16:40:24 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/08 19:33:09 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_cmd	*expander(t_cmd *cmd, int cmd_count, char **env)
 	convert_to_env_list(env, &env_lst);
 	while (i < cmd_count)
 	{
-		expand_cmd(cmd[i].command, env_lst);
+		expand_cmd(&cmd[i], env_lst);
 		// expand_redir(cmd[i].redir, env_lst);
 		// printf("---------------> cmd[%d].command->cmd = %s\n", i, cmd[i].command->cmd);
 		i++;

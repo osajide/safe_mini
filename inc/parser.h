@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:59:07 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/06 16:08:54 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/08 18:13:59 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "types.h"
+
+t_args	*new_args_node(char	*content);
+void	add_args_node_back(t_args **args, t_args *new_node);
 
 t_redir	*new_redir_node(char *file, int type);
 void	add_redir_node_back(t_redir **redir, t_redir *new_node);

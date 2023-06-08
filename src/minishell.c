@@ -6,13 +6,14 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/06 15:43:32 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/08 19:38:37 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 #include "../inc/parser.h"
 #include "../inc/expander.h"
+#include <stdio.h>
 
 void	clear_lst(t_list *lst)
 {
@@ -86,11 +87,11 @@ void	minishell(char **env)
 				{
 					print_linked_list(lst);
 					cmd = fill_struct_cmd(lst, &cmd_count);
+					cmd = expander(cmd, cmd_count, env);
+					free(line);
+					clear_lst(lst);
+					lst  = 0;
 				}
-				cmd = expander(cmd, cmd_count, env);
-				free(line);
-				clear_lst(lst);
-				lst  = 0;
 			}
 		}
 	}
