@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:46:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/08 19:37:21 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/09 16:57:42 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_args	*get_arg(t_list *lst, int *pos)
 	t_args	*tmp_args;
 	
 	args = NULL;
+	add_args_node_back(&args, new_args_node(get_command(lst, pos)));
 	i = -1;
 	while ((++i <= (*pos)) && lst)
 		lst = lst->next;
@@ -89,14 +90,12 @@ void	print_parser(t_cmd *cmd, int count_cmd)
 	t_args *tmp_args;
 
 	i = -1;
-	tmp_args = cmd->args;
 	while (++i < count_cmd)
 	{
-		if (cmd[i].command)
+		tmp_args = cmd[i].args;
+		if (tmp_args)
 		{
 			printf("\n******** COMMAND [%d]**************\n\n", i + 1);
-			printf("\tcommand  = %s\n", cmd[i].command);
-			j = -1;
 			while (tmp_args)
 			{
 				printf("\t\033[1;32margument =\033[0m %s\n", tmp_args->argument);
@@ -135,7 +134,7 @@ t_cmd	*fill_struct_cmd(t_list *lst, int *cmd_count)
 	i = 0;
 	while (i < *cmd_count)
 	{
-		cmd[i].command = get_command(lst, &pos);
+		// cmd[i].command = get_command(lst, &pos);
 		cmd[i].args = get_arg(lst, &pos);
 		// printf("\n\n\n\n\n\n\n\n\n ------>>>>>> cmd[%d].command->args->argument = %s\n\n\n\n\n\n\n\n\n", i, cmd[i].command->args->argument);
 		cmd[i].redir = fill_struct_redir(lst);

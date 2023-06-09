@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 20:01:06 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/08 19:21:51 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/09 16:52:53 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,6 @@ typedef struct s_args
 	struct s_args	*next;
 }	t_args;
 
-// typedef struct s_command
-// {
-// 	char	*cmd;
-// 	t_args	*args;
-// }	t_command;
-
 typedef struct s_redir
 {
 	char			*file;
@@ -69,7 +63,6 @@ typedef struct s_redir
 
 typedef struct s_cmd
 {
-	char		*command;
 	t_args		*args;
 	t_redir		*redir;
 }	t_cmd;
