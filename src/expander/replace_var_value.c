@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 20:52:39 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/09 17:55:24 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/09 22:44:57 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,11 @@ int	if_should_split(char *var)
 	return (0);
 }
  
-void	replace_var(char *before_var, char *var, t_args **new_args)
+void	replace_var_in_args_list(char *before_var, char *var, t_args **new_args)
 {
 	int		i;
 	char	*temp;
 	char	**split;
-	
 
 	i = 0;
 	temp = before_var;
@@ -62,3 +61,4 @@ void	replace_var(char *before_var, char *var, t_args **new_args)
 	free(var);
 	free(before_var);
 }
+

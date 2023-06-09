@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:51:02 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/09 17:39:16 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/09 22:29:00 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_cmd	*expander(t_cmd *cmd, int cmd_count, char **env);
 int		split_word_count(char const *s, char *charset);
 char	**ft_split_charset(char const *s, char *charset);
 int		if_should_split(char *var);
-void	replace_var(char *before, char *var, t_args **args);
+void	replace_var_in_args_list(char *before_var, char *var, t_args **new_args);
 
 /************** env linked list *************/
 
@@ -42,6 +42,8 @@ char	*expand_inside_single_quotes(char *s, int *pos);
 char	*expand_inside_double_quotes(char *s, int *pos, t_env *env_lst);
 
 void	expand_args_string(char *s, t_env *env_lst, t_args **args);
+void	clear_args_list(t_args *args);
+void	clear_redir_list(t_redir *redir);
 
 t_args	*expand_args(t_args *args, t_env *env_lst);
 void	expand_cmd(t_cmd *cmd, t_env *env_lst);

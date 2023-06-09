@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.c                                         :+:      :+:    :+:   */
+/*   clear_lists.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 19:11:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/09 22:46:34 by osajide          ###   ########.fr       */
+/*   Created: 2023/06/09 21:20:28 by osajide           #+#    #+#             */
+/*   Updated: 2023/06/09 22:28:41 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/expander.h"
-#include <stdio.h>
 
-t_cmd	*expander(t_cmd *cmd, int cmd_count, char **env)
+void	clear_args_list(t_args *args)
 {
-	int		i;
-	t_env	*env_lst;
-
-	printf("\n\n\033[1;31mParser finished\n***********************\033[0m\n\n");
-	i = 0;
-	env_lst = NULL;
-	convert_to_env_list(env, &env_lst);
-	while (i < cmd_count)
+	t_args	*tmp;
+	
+	while (args)
 	{
-		expand_cmd(&cmd[i], env_lst);
-		i++;
+		tmp = args;
+		args = args->next;
+		free(tmp->argument);
+		free(tmp);
 	}
-	return (cmd);
+}
+
+void	clear_redir_list(t_redir *redir)
+{
+	t_redir	*tmp;
+	
+	while (redir)
+	{
+		tmp = redir;
+		redir = redir->next;
+		free(tmp->file);
+		free(tmp);
+	}
 }

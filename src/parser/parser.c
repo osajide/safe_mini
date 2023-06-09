@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:46:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/09 16:57:42 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/09 22:45:41 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,10 @@ void	print_parser(t_cmd *cmd, int count_cmd)
 	int i;
 	int j;
 	t_args *tmp_args;
+	t_redir *tmp_redir;
 
 	i = -1;
+	tmp_redir = cmd->redir;
 	while (++i < count_cmd)
 	{
 		tmp_args = cmd[i].args;
@@ -102,21 +104,21 @@ void	print_parser(t_cmd *cmd, int count_cmd)
 				tmp_args = tmp_args->next;
 			}
 		}
-		if (cmd[i].redir)
+		if (tmp_redir)
 		{
 			printf("\n******** REDIRECTION [%d]**************\n\n", i + 1);
-			while(cmd[i].redir)
+			while(tmp_redir)
 			{
-				printf("\tfile == %s\n", cmd[i].redir->file);
-				if (cmd[i].redir->type == REDIR_IN)
+				printf("\tfile == %s\n", tmp_redir->file);
+				if (tmp_redir->type == REDIR_IN)
 					printf("\ttype == %s\n", "REDIR_IN\n");
-				else if (cmd[i].redir->type == REDIR_OUT)
+				else if (tmp_redir->type == REDIR_OUT)
 					printf("\ttype == %s\n", "REDIR_OUT\n");
-				else if (cmd[i].redir->type == HEREDOC)
+				else if (tmp_redir->type == HEREDOC)
 					printf("\ttype == %s\n", "HEREDOC\n");
-				else if (cmd[i].redir->type == APPEND_REDIR)
+				else if (tmp_redir->type == APPEND_REDIR)
 					printf("\ttype == %s\n", "APPEND_REDIR\n");
-				cmd[i].redir = cmd[i].redir->next;
+				tmp_redir = tmp_redir->next;
 			}
 		}
 	}
@@ -134,9 +136,7 @@ t_cmd	*fill_struct_cmd(t_list *lst, int *cmd_count)
 	i = 0;
 	while (i < *cmd_count)
 	{
-		// cmd[i].command = get_command(lst, &pos);
 		cmd[i].args = get_arg(lst, &pos);
-		// printf("\n\n\n\n\n\n\n\n\n ------>>>>>> cmd[%d].command->args->argument = %s\n\n\n\n\n\n\n\n\n", i, cmd[i].command->args->argument);
 		cmd[i].redir = fill_struct_redir(lst);
 		i++;
 		while (lst && lst->data->token != PIPE)
