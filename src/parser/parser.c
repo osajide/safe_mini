@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:46:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/09 22:45:41 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/10 14:56:45 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,25 @@ t_args	*get_arg(t_list *lst, int *pos)
 {
 	t_args	*args;
 	int		i;
-	int		len;
-	t_list	*tmp;
-	t_args	*tmp_args;
 	
 	args = NULL;
 	add_args_node_back(&args, new_args_node(get_command(lst, pos)));
 	i = -1;
 	while ((++i <= (*pos)) && lst)
 		lst = lst->next;
-	tmp = lst;
-	while (lst && (lst->data->token == WORD || lst->data->token == ENV))
+	while (lst && lst->data->token != PIPE)
 	{
-		add_args_node_back(&args, new_args_node(lst->data->content));
-		lst = lst->next;
+		if (lst->data->token != WORD && lst->data->token != ENV)
+		{
+			lst = lst->next;
+			if (lst)
+				lst = lst->next;
+		}
+		while (lst && (lst->data->token == WORD || lst->data->token == ENV))
+		{
+			add_args_node_back(&args, new_args_node(lst->data->content));
+			lst = lst->next;
+		}
 	}
 	return (args);
 }

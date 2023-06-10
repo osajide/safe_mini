@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:51:02 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/09 22:29:00 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/10 13:00:27 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,10 @@ char	*handle_dollar_sign_inside_d_quotes(char *s, int *pos, t_env *env_lst);
 
 char	*expand_inside_single_quotes(char *s, int *pos);
 char	*expand_inside_double_quotes(char *s, int *pos, t_env *env_lst);
+
+/**************  args_expansion ***************/
+
+void	expand_args_string(char *s, t_env *env_lst, t_args **args);
+t_args	*expand_args(t_args *args, t_env *env_lst);
 
 #endif

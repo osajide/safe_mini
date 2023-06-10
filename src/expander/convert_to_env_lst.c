@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:45:34 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/06 19:37:26 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/10 17:00:37 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ char	*get_env_id(char *env_var)
 	while (env_var[i] && env_var[i] != '=')
 		i++;
 	env_id = ft_substr(env_var, start, i);
-	// printf("env_id = %s\n", env_id);
 	return (env_id);
 }
 
@@ -78,7 +77,6 @@ char	*get_env_content(char *env_var)
 			i++;
 	}
 	env_content = ft_substr(env_var, start, i);
-	// printf("env_content = %s\n", env_content);
 	return (env_content);
 }
 
