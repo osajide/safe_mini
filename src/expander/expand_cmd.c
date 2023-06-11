@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:26:45 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/10 17:18:00 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 15:16:05 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char	*remove_spaces(char *var)
+char	*replace_spaces(char *var)
 {
 	int		i;
 
@@ -39,7 +39,6 @@ void	expand_redir_string(t_redir *redir, t_env *env_lst, t_redir **new_redir)
 
 	i = 0;
 	ambiguous = redir->file;
-	// printf("ambiguous : %s\n", ambiguous);
 	temp = NULL;
 	var = NULL;
 	if (redir->type != HEREDOC)
@@ -55,36 +54,27 @@ void	expand_redir_string(t_redir *redir, t_env *env_lst, t_redir **new_redir)
 				var = handle_dollar_sign(redir->file, &i, env_lst);
 				// printf("temp before joining with var : (%s)\n", temp);
 				// printf("var before : %s\n", var);
-				var = remove_spaces(var);
+				var = replace_spaces(var);
 				// printf("var after : %s\n", var);
 				temp = ft_strjoin(temp, var);
 				// printf("temp after joining with var : (%s)\n", temp);
-				if (split_word_count(temp, "\x06") != 1)
-				{
-					// ft_putstr_fd("minishell: %s: ambiguous redirect\n", 2);
-					printf("------------------\n\n");
-					printf("minishell: %s: ambiguous redirect\n", ambiguous);
-					printf("------------------\n");
-					return ;
-				}
-				// else
+				// if (split_word_count(temp, "\x06") != 1)
 				// {
-				// 	if (if_should_split(temp))
-				// 	{
-				// 		split = ft_split_charset(temp, "\x06");
-				// 		while (*split)
-				// 		{
-				// 			temp = ft_strjoin(temp, ft_strdup(*split));
-				// 			split++;
-				// 		}
-				// 	}
-				// } 
+				// 	// ft_putstr_fd("minishell: %s: ambiguous redirect\n", 2);
+				// 	printf("------------------\n\n");
+				// 	printf("minishell: %s: ambiguous redirect\n", ambiguous);
+				// 	printf("------------------\n");
+				// 	// return ;
+				// }
 			}
 			else
 				temp = ft_join_char(temp, redir->file[i]);
 			i++;
 		}
-		add_redir_node_back(new_redir, new_redir_node(temp, redir->type));
+		if (split_word_count(temp, "\x06") != 1)
+			printf("minishell: %s: ambiguous redirect\n", ambiguous);
+		else
+			add_redir_node_back(new_redir, new_redir_node(temp, redir->type));
 	}
 }
 
