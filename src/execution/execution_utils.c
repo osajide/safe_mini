@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.c                                         :+:      :+:    :+:   */
+/*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 19:11:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/11 20:55:19 by osajide          ###   ########.fr       */
+/*   Created: 2023/06/09 16:04:31 by ayakoubi          #+#    #+#             */
+/*   Updated: 2023/06/11 20:52:38 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/expander.h"
-#include <stdio.h>
+#include "../../inc/execution.h"
 
-t_cmd	*expander(t_cmd *cmd, int cmd_count, char **env)
+char	**get_new_arg(t_cmd *cmd)
 {
-	int		i;
-	t_env	*env_lst;
-
-	// printf("\n\n\033[1;31mParser finished\n***********************\033[0m\n\n");
-	i = 0;
-	env_lst = NULL;
-	convert_to_env_list(env, &env_lst);
-	while (i < cmd_count)
+	char **new;
+	t_args *tmp;
+	int	i;
+	int len;
+	
+	i = -1;
+	len = 0;
+	tmp = cmd->args;
+	while (tmp)
 	{
-		expand_cmd(&cmd[i], env_lst);
-		i++;
+		len++;
+		tmp = tmp->next;
 	}
-	return (cmd);
+	new = malloc(sizeof(char *) * (len + 1));
+	if (!new)
+		return (0);
+	i = 0;
+	tmp = cmd->args;
+	while (tmp)
+	{
+		new[i++] = ft_strdup(tmp->argument);
+		tmp = tmp->next;
+	}
+	new[i] = NULL;
+	return (new);
 }

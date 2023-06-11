@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 20:01:06 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/11 16:44:19 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 20:43:21 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,12 @@ typedef struct s_env
 	char			*content;
 	struct s_env	*next;
 }	t_env;
+
+typedef struct s_general
+{
+	int	nbr_cmd;
+	int	fd_in;
+	int	fd_out;
+}	t_general;
 
 #endif
