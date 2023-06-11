@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/10 13:01:38 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/11 16:13:33 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ PARSERDIR	=	parser
 EXPANDERDIR	=	expander
 EXECUTDIR	=	execution
 
-SRCMAIN		=	minishell main prompt check_input check_type_cmd
+SRCMAIN		=	minishell main prompt check_quotes check_type_cmd
 BUILTSRC	:=	cd echo pwd
 LEXERSRC	:=	lexer tokenize tokenize_dollar_pipe tokenize_redirection analyzer
 PARSERSRC	:=	parser parser_utils
