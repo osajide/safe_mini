@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:18:34 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/06 15:18:13 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 23:03:48 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/types.h>
 # include <readline/readline.h>
 # include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 # include <readline/history.h>
 # include "types.h"
 # include "lexer.h"

@@ -6,10 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:26:45 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/11 20:54:45 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 23:04:13 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../inc/minishell.h"
 #include "../../inc/expander.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -60,7 +61,7 @@ void	expand_redir_string(t_redir *redir, t_env *env_lst, t_redir **new_redir)
 			i++;
 		}
 		if (split_word_count(temp, "\x06") != 1)
-			printf("minishell: %s: ambiguous redirect\n", ambiguous);
+			ft_printf(2, "minishell: %s: ambiguous redirect\n", ambiguous);
 		else
 			add_redir_node_back(new_redir, new_redir_node(temp, redir->type));
 	}

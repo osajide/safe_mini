@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/11 20:51:30 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/11 22:43:35 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,8 +62,10 @@ CFLAGS		=	-Wall -Wextra -Werror -lreadline -g -fsanitize=address
 
 
 C_LIBFT		=	make -C libft
+C_PRINTF	=	make -C ft_printf
 C_GNL		=	make -C gnl
 AR_LIBFT	=	libft/libft.a
+AR_PRINTF	=	ft_printf/libftprintf.a
 AR_GNL		=	gnl/get_next_line
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c 
@@ -81,12 +83,14 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ) $(BUILTOBJ) $(LEXEROBJ) $(PARSEROBJ) $(EXPANDEROBJ) $(EXECUTOBJ)
 	@$(C_LIBFT) -s
+	@$(C_PRINTF) -s
 	@$(C_GNL) -s
-	@$(CC) $(CFLAGS) $^ $(AR_LIBFT) $(AR_GNL) -I $(INC) -o $@
+	@$(CC) $(CFLAGS) $^ $(AR_LIBFT) $(AR_PRINTF) $(AR_GNL) -I $(INC) -o $@
 	@printf "\n\n$(SPLASH) $(RED)              ------------- Minishell Ready -------------$(RESET)\n\n\n"
 
 clean:
 	@$(C_LIBFT) clean
+	@$(C_PRINTF) clean
 	@$(C_GNL) clean
 	@rm -rf *.o
 	@rm -rf $(OBJDIR)
@@ -94,6 +98,7 @@ clean:
 fclean: clean
 
 	@$(C_LIBFT) fclean
+	@$(C_PRINTF) fclean
 	@$(C_GNL) fclean
 	@rm -rf $(NAME)
 
