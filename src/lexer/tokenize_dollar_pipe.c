@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:41:17 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/05 17:52:32 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:42:02 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	if_dollar_sign(char *line, t_list **lst, int *pos)
 	}
 	temp = ft_substr(line, start, *pos);
 	if (only_env(temp))
-		ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, ENV));
+		ft_lstadd_back(lst, ft_lstnew(temp, ENV));
 	else
-		ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
+		ft_lstadd_back(lst, ft_lstnew(temp, WORD));
 	(*pos)--;
 }
 
@@ -57,5 +57,5 @@ void	if_pipe(char *line, t_list **lst, int *pos)
 
 	temp = NULL;
 	temp = ft_strjoin(temp , "|");
-	ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, PIPE));
+	ft_lstadd_back(lst, ft_lstnew(temp, PIPE));
 }

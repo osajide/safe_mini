@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:53:55 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/05 21:38:40 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:41:44 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "../libft/libft.h"
 # include "types.h"
 
-t_list	*ft_lstnew(void *content, int state, int token);
+t_list	*ft_lstnew(void *content, int token);
 void	ft_lstadd_front(t_list **lst, t_list *new_node);
 t_list	*ft_lstlast(t_list *lst);
 int		ft_lstsize(t_list *lst);

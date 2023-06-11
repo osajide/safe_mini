@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:13:36 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/05/27 22:02:20 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:37:47 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_echo(t_list *lst)
 
 	i = 0;
 	lst = lst->next;
-	
 	if (lst && !ft_strncmp(lst->data->content, "-n", ft_strlen(lst->data->content)))
 	{
 		i = 1;

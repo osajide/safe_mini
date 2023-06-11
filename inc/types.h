@@ -6,19 +6,12 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 20:01:06 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/09 16:52:53 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:44:19 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
-
-typedef enum e_state
-{
-	IN_SQ = 1,
-	IN_DQ,
-	NOTHING
-}	t_state;
 
 typedef enum e_token
 {
@@ -37,7 +30,6 @@ typedef enum e_token
 typedef struct s_data
 {
 	char	*content;
-	t_state	state;
 	t_token	token;
 }	t_data;
 

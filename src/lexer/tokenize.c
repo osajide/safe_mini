@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 22:44:57 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/05 22:38:20 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:43:14 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void	check_inside_double_quotes(char *temp, char *line, t_list **lst, int *pos)
 	temp1 = ft_substr(line, start, *pos + 1);
 	if (look_for_char(temp1))
 	{
-		ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
-		ft_lstadd_back(lst, ft_lstnew(temp1, IN_DQ, WORD));
+		ft_lstadd_back(lst, ft_lstnew(temp, WORD));
+		ft_lstadd_back(lst, ft_lstnew(temp1, WORD));
 	}
 	else
 	{
 		temp1 = ft_remove_char(temp1, 34);
-		ft_lstadd_back(lst, ft_lstnew(ft_strjoin(temp, temp1), NOTHING, WORD));
+		ft_lstadd_back(lst, ft_lstnew(ft_strjoin(temp, temp1), WORD));
 	}
 }
 
@@ -117,7 +117,7 @@ void	if_string(char *line, t_list **lst, int *pos)
 	(*pos)--;
 	temp = ft_substr(line, start, *pos + 1);
 	if (temp && *temp)
-		ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
+		ft_lstadd_back(lst, ft_lstnew(temp, WORD));
 }
 
 void	if_single_quote(char *line, t_list **lst, int *pos)
@@ -141,7 +141,7 @@ void	if_single_quote(char *line, t_list **lst, int *pos)
 		}
 		temp = ft_strjoin(temp, ft_substr(line, start, *pos));
 	}
-	ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
+	ft_lstadd_back(lst, ft_lstnew(temp, WORD));
 	(*pos)--;
 }
 
@@ -166,6 +166,6 @@ void	if_double_quote(char *line, t_list **lst, int *pos)
 		}
 		temp = ft_strjoin(temp, ft_substr(line, start, *pos));
 	}
-	ft_lstadd_back(lst, ft_lstnew(temp, NOTHING, WORD));
+	ft_lstadd_back(lst, ft_lstnew(temp, WORD));
 	(*pos)--;
 }

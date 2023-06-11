@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/11 16:14:49 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:44:06 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,6 @@ void	print_linked_list(t_list *lst)
 	{
 		printf("\n\n\n-----------------------------\n");
 		printf("t->content = %s\n", t->data->content);
-		if (t->data->state == 1)
-			printf("t->state = IN_SQ\n");
-		else if (t->data->state == 2)
-			printf("t->state = IN_DQ\n");
-		else if (t->data->state == 3)
-			printf("t->state = NOTHING\n");
 		if (t->data->token == 1)
 			printf("t->token = WORD\n");
 		else if (t->data->token == 2)
