@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:41:17 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/11 16:42:02 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:54:55 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ void	if_dollar_sign(char *line, t_list **lst, int *pos)
 {
 	int		start;
 	char	*temp;
-	
+
 	temp = NULL;
 	start = *pos;
 	(*pos)++;
-	while (line[*pos] && line[*pos] != ' ' && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>')
+	while (line[*pos] && line[*pos] != ' ' && line[*pos] != '|'
+		&& line[*pos] != '<' && line[*pos] != '>')
 	{
 		if (line[*pos] == 34)
 			skip_inside_quotes(line, pos, 34);
@@ -56,6 +57,6 @@ void	if_pipe(char *line, t_list **lst, int *pos)
 	char	*temp;
 
 	temp = NULL;
-	temp = ft_strjoin(temp , "|");
+	temp = ft_strjoin(temp, "|");
 	ft_lstadd_back(lst, ft_lstnew(temp, PIPE));
 }

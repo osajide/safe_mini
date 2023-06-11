@@ -6,61 +6,19 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 22:44:57 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/11 16:43:14 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:53:39 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/lexer.h"
 #include <stdio.h>
 
-int	look_for_char(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == '$')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	*ft_remove_char(char *s, int ascii)
-{
-	char	*new_char;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (s[i] == ascii)
-			j++;
-		i++;
-	}
-	new_char = malloc((i - j) + 1);
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (s[i] == ascii)
-			i++;
-		else
-			new_char[j++] = s[i++];
-	}
-	new_char[j] = '\0';
-	free(s);
-	return (new_char);
-}
-
-void	check_inside_double_quotes(char *temp, char *line, t_list **lst, int *pos)
+void	check_inside_double_quotes(char *temp, char
+	*line, t_list **lst, int *pos)
 {
 	int		start;
 	char	*temp1;
-	
+
 	temp1 = NULL;
 	start = *pos;
 	(*pos)++;
@@ -92,13 +50,6 @@ char	*handle_quote(t_list **lst, char *line, int *pos, int ascii)
 	return (temp);
 }
 
-void	skip_inside_quotes(char *line, int *pos, int ascii)
-{
-	(*pos)++;
-	while (line[*pos] && line[*pos] != ascii)
-		(*pos)++;
-}
-
 void	if_string(char *line, t_list **lst, int *pos)
 {
 	int		start;
@@ -106,7 +57,8 @@ void	if_string(char *line, t_list **lst, int *pos)
 
 	temp = NULL;
 	start = *pos;
-	while (line[*pos] && line[*pos] != ' ' && line[*pos] != '\t' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != '|')
+	while (line[*pos] && line[*pos] != ' ' && line[*pos] != '\t'
+		&& line[*pos] != '<' && line[*pos] != '>' && line[*pos] != '|')
 	{
 		if (line[*pos] == 34)
 			skip_inside_quotes(line, pos, 34);
@@ -131,7 +83,8 @@ void	if_single_quote(char *line, t_list **lst, int *pos)
 	if (line[*pos] && line[*pos] != ' ' && line[*pos] != '\t')
 	{
 		start = *pos;
-		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != ' ')
+		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<'
+			&& line[*pos] != '>' && line[*pos] != ' ')
 		{
 			if (line[*pos] == 34)
 				skip_inside_quotes(line, pos, 34);
@@ -156,7 +109,8 @@ void	if_double_quote(char *line, t_list **lst, int *pos)
 	if (line[*pos] && line[*pos] != ' ' && line[*pos] != '\t')
 	{
 		start = *pos;
-		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<' && line[*pos] != '>' && line[*pos] != ' ')
+		while (line[*pos] && line[*pos] != '|' && line[*pos] != '<'
+			&& line[*pos] != '>' && line[*pos] != ' ')
 		{
 			if (line[*pos] == 34)
 				skip_inside_quotes(line, pos, 34);

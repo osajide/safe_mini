@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:11:53 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/09 15:25:03 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:59:13 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 t_redir	*new_redir_node(char *file, int type)
 {
-	t_redir *redir;
-	
+	t_redir	*redir;
+
 	redir = malloc(sizeof(t_redir));
 	if (!redir)
 		return (0);
@@ -28,7 +28,7 @@ t_redir	*new_redir_node(char *file, int type)
 
 void	add_redir_node_back(t_redir **redir, t_redir *new_node)
 {
-	t_redir *tmp;
+	t_redir	*tmp;
 
 	if (!new_node)
 		return ;
@@ -45,8 +45,8 @@ void	add_redir_node_back(t_redir **redir, t_redir *new_node)
 
 t_args	*new_args_node(char	*content)
 {
-	t_args *args;
-	
+	t_args	*args;
+
 	args = malloc(sizeof(t_args));
 	if (!args)
 		return (0);
@@ -57,7 +57,7 @@ t_args	*new_args_node(char	*content)
 
 void	add_args_node_back(t_args **args, t_args *node)
 {
-	t_args *tmp;
+	t_args	*tmp;
 
 	if (!node)
 		return ;

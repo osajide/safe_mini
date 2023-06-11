@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:46:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/10 14:56:45 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:57:58 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_args	*get_arg(t_list *lst, int *pos)
 {
 	t_args	*args;
 	int		i;
-	
+
 	args = NULL;
 	add_args_node_back(&args, new_args_node(get_command(lst, pos)));
 	i = -1;
@@ -81,7 +81,8 @@ t_redir	*fill_struct_redir(t_list *lst)
 		{
 			lst = lst->next;
 			if (lst && (lst->data->token == WORD || lst->data->token == ENV))
-				add_redir_node_back(&redir, new_redir_node(lst->data->content, lst->prev->data->token));
+				add_redir_node_back(&redir,
+					new_redir_node(lst->data->content, lst->prev->data->token));
 		}
 		lst = lst->next;
 	}
@@ -90,10 +91,10 @@ t_redir	*fill_struct_redir(t_list *lst)
 
 void	print_parser(t_cmd *cmd, int count_cmd)
 {
-	int i;
-	int j;
-	t_args *tmp_args;
-	t_redir *tmp_redir;
+	int		i;
+	int		j;
+	t_args	*tmp_args;
+	t_redir	*tmp_redir;
 
 	i = -1;
 	tmp_redir = cmd->redir;
@@ -112,7 +113,7 @@ void	print_parser(t_cmd *cmd, int count_cmd)
 		if (tmp_redir)
 		{
 			printf("\n******** REDIRECTION [%d]**************\n\n", i + 1);
-			while(tmp_redir)
+			while (tmp_redir)
 			{
 				printf("\tfile == %s\n", tmp_redir->file);
 				if (tmp_redir->type == REDIR_IN)

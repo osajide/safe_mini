@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 00:01:48 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/11 16:42:46 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:55:36 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	input_redirection(char *line, t_list **lst, int *pos)
 	}
 	else
 	{
-		temp = ft_strjoin(temp , "<");
+		temp = ft_strjoin(temp, "<");
 		ft_lstadd_back(lst, ft_lstnew(temp, REDIR_IN));
 	}
 }
@@ -33,7 +33,7 @@ void	input_redirection(char *line, t_list **lst, int *pos)
 void	output_redirection(char *line, t_list **lst, int *pos)
 {
 	char	*temp;
-	
+
 	temp = NULL;
 	if (line[*pos + 1] == '>')
 	{
@@ -43,7 +43,7 @@ void	output_redirection(char *line, t_list **lst, int *pos)
 	}
 	else
 	{
-		temp = ft_strjoin(temp , ">");
+		temp = ft_strjoin(temp, ">");
 		ft_lstadd_back(lst, ft_lstnew(temp, REDIR_OUT));
 	}
 }

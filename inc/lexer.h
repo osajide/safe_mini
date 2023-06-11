@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:53:55 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/11 16:41:44 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/11 16:50:46 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,17 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	loop_on_input(char *line, t_list **lst);
 void	if_string(char *line, t_list **lst, int *pos);
 char	*handle_quote(t_list **lst, char *line, int *pos, int ascii);
-char	*ft_remove_char(char *s, int ascii);
 void	if_single_quote(char *line, t_list **lst, int *pos);
 void	if_double_quote(char *line, t_list **lst, int *pos);
 void	input_redirection(char *line, t_list **lst, int *pos);
 void	output_redirection(char *line, t_list **lst, int *pos);
 void	if_dollar_sign(char *line, t_list **lst, int *pos);
 void	if_pipe(char *line, t_list **lst, int *pos);
+
+/***************** utils **************/
+
+int		look_for_char(char *s);
+char	*ft_remove_char(char *s, int ascii);
 void	skip_inside_quotes(char *line, int *pos, int ascii);
 
 /****************** analyzer *****************/
