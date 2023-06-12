@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/12 18:17:58 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 22:25:18 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,25 +71,25 @@ void	minishell(char **env)
 	char	*line;
 	t_list	*lst;
 	t_cmd	*cmd;
-	int		cmd_count;
 
 	lst = NULL;
 	while (1)
 	{
 		line = display_prompt();
-		if(line && line[0])
+		if (line && line[0])
 		{	
 			if (check_quotes(line, &general))
 			{
 				loop_on_input(line, &lst);
 				if (lst)
 				{
-					if (!analyzer(lst, &general))
+					if (!analyzer(lst))
 					{
 						// print_linked_list(lst);
+						general.should_exec = 1;
 						cmd = fill_struct_cmd(lst, &general.nbr_cmd);
 						cmd = expander(cmd, &general, env);
-						if(cmd)
+						if (general.should_exec == 1)
 							execute_multiple_cmd(cmd, &general, env);
 					}
 				}

@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:11:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/12 18:18:44 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 22:00:58 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	expand_cmd(t_cmd *cmd, t_env *env_lst, t_general *general)
 	// 	tmp = tmp->next;
 	// }
 	cmd->redir = expand_redir(cmd->redir, env_lst, general);
-	if(!cmd->redir)
-		return 0;
+	// if(!cmd->redir)
+	// 	return (0);
 	// printf("cmd->redir->file = (%s)\n", cmd->redir->file);
 	// t_redir	*tmp2;
 	// tmp2 = cmd->redir;
@@ -40,7 +40,7 @@ int	expand_cmd(t_cmd *cmd, t_env *env_lst, t_general *general)
 	// 	printf("\n				>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
 	// 	tmp2 = tmp2->next;
 	// }
-	return 1;
+	return (1);
 }
 
 t_cmd	*expander(t_cmd *cmd, t_general *general, char **env)
@@ -54,8 +54,8 @@ t_cmd	*expander(t_cmd *cmd, t_general *general, char **env)
 	convert_to_env_list(env, &env_lst);
 	while (i < general->nbr_cmd)
 	{
-		if(!expand_cmd(&cmd[i], env_lst, general))
-			return NULL;
+		if(expand_cmd(&cmd[i], env_lst, general) == 0)
+			return (NULL);
 		i++;
 	}
 	return (cmd);

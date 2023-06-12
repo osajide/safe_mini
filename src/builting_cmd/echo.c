@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:13:36 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/11 16:37:47 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 20:31:29 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ void	ft_echo(t_list *lst)
 	}
 	if(i == 0)
 		printf("\n");
+	general.exit_status = 0;
 }

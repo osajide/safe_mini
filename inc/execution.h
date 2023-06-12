@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:56:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/11 20:49:31 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 23:25:28 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,10 @@ int		open_files(t_redir *redir, t_general *general);
 
 char	**get_new_arg(t_cmd *cmd);
 char	*get_path_cmd(t_cmd *cmd, char **env);
+
+/*********** handle in out file ***************/
+
+int handle_file_in(char *file);
+int	handle_file_out(char *file);
 
 #endif

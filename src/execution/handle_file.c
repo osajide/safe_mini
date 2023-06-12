@@ -3,34 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   handle_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:20:45 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/10 20:14:02 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/06/12 23:47:30 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "../../inc/execution.h"
 
-int handle_file(t_redir *redir)
+int	handle_file_out(char *file)
 {
-	t_redir *tmp;
+	if (access(file, W_OK) < 0)
+		return (general.exit_status = 1, ft_printf(2, "minishell: %s: Permission denied\n", file), 0);
+	return (1);
+}
 
-	tmp = redir;
-	while (tmp)
-	{
-		if (tmp->type == REDIR_IN)
-		{
-			if (access(tmp->file, F_OK) < 0)
-				return (ft_printf("%s: no such file or directory\n", type->file), 0);
-			if (access(file, R_OK) < 0){
-				return (ft_printf("%s: permission denied\n", type->file), 0);
-		}
-		if (tmp->type == REDIR_OUT)
-		{
-			if (access(tmp->file, W_OK) < 0)
-				return (ft_printf("%s: permission denied\n", type->file), 0);
-		}
-		tmp = tmp->next;
-	}
+int handle_file_in(char *file)
+{
+	if (access(file, F_OK) < 0)
+		return (general.exit_status = 1, ft_printf(2, "minishell: No such file or directory\n"), 0);
+	if (access(file, R_OK) < 0)
+		return (general.exit_status = 1, ft_printf(2, "minishell: %s: Permission denied\n", file), 0);
+	return (1);
 }

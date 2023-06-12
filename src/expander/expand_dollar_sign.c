@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:33:29 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/10 17:00:25 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 21:46:14 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 	(*pos)++;
 	if (!s[*pos])
 		return ((*pos)-- , ft_join_char(temp, '$'));
+	else if (s[*pos] == '?')
+		return (ft_itoa(general.exit_status));
 	else if (s[*pos] == 39 || s[*pos] == 34)
 		return ((*pos)--, ft_join_char(temp, '\0'));
 	if (!((s[*pos] >= 'A' && s[*pos] <= 'Z') || (s[*pos] >= 'a' && s[*pos] <= 'z') || s[*pos] == '_'))
@@ -43,9 +45,7 @@ char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 		while (env_lst)
 		{
 			if (!ft_strncmp(temp, env_lst->id, ft_strlen(temp)))
-			{
 				return ((*pos)--, env_lst->content);
-			}
 			env_lst = env_lst->next;
 		}
 		if (!env_lst)

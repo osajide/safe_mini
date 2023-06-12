@@ -6,11 +6,12 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:00:51 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/11 20:58:05 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 21:59:30 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/execution.h"
+#include <stdio.h>
 
 int execute_multiple_cmd(t_cmd *cmd, t_general *general, char **env)
 {
@@ -27,6 +28,7 @@ int execute_multiple_cmd(t_cmd *cmd, t_general *general, char **env)
 	pid = malloc(sizeof(int) * general->nbr_cmd);
 	while (++i < general->nbr_cmd)
 	{
+		// printf("cmd[%d].args->argument = (%s)\n", i, cmd[i].args->argument);
 		if (i < general->nbr_cmd - 1)
 		{
 			if (pipe(fd) < 0)

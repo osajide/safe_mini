@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:53:55 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/12 17:38:46 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 22:14:22 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void	skip_inside_quotes(char *line, int *pos, int ascii);
 
 /****************** analyzer *****************/
 
-int		analyzer(t_list *lst, t_general *general);
+int		analyzer(t_list *lst);
 
 #endif

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execute_simple_cmd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 12:07:44 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/10 15:41:51 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:33:13 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "../../inc/execution.h"
 
 int execute_simple_cmd(t_cmd *cmd, t_general *general, char **env)
 {

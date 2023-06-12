@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/11 22:43:35 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/12 23:27:53 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ PARSERDIR	=	parser
 EXPANDERDIR	=	expander
 EXECUTDIR	=	execution
 
-SRCMAIN		=	minishell main prompt check_quotes check_type_cmd
+SRCMAIN		=	minishell main prompt check_quotes
 BUILTSRC	:=	cd echo pwd
 LEXERSRC	:=	lexer tokenize tokenize_dollar_pipe tokenize_redirection analyzer \
 				utils
@@ -40,7 +40,8 @@ PARSERSRC	:=	parser parser_utils
 EXPANDERSRC	:=	expander convert_to_env_lst expand_dollar_sign expand_cmd \
 				expand_inside_quotes replace_var_value split_charset clear_lists \
 				args_expansion
-EXECUTSRC	:=	get_path_cmd execute_cmd execution_utils execute_multiple_cmd
+EXECUTSRC	:=	get_path_cmd execute_cmd execution_utils execute_multiple_cmd \
+				handle_file
 
 OBJ			:=	$(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRCMAIN)))
 SRC			:=	$(addprefix $(SRCDIR)/, $(addsuffix .c, $(SRCMAIN)))
