@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 20:01:06 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/11 20:43:21 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 15:37:32 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_general
 	int	nbr_cmd;
 	int	fd_in;
 	int	fd_out;
+	int	exit_status;
 }	t_general;
 
 #endif

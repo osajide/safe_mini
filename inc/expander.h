@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:51:02 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/11 23:03:51 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 18:19:38 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 # define EXPANDER_H
 
 # include <stdlib.h>
-# include "types.h"
-# include "lexer.h"
-# include "parser.h"
+#include "minishell.h"
+#include "types.h"
 
-t_cmd	*expander(t_cmd *cmd, int cmd_count, char **env);
+t_cmd	*expander(t_cmd *cmd, t_general *general, char **env);
 
 /****************** split_charset and utils ***************/
 
@@ -46,13 +45,17 @@ void	clear_args_list(t_args *args);
 void	clear_redir_list(t_redir *redir);
 
 t_args	*expand_args(t_args *args, t_env *env_lst);
-void	expand_cmd(t_cmd *cmd, t_env *env_lst);
+int	expand_cmd(t_cmd *cmd, t_env *env_lst, t_general *general);
 char	*handle_dollar_sign_inside_d_quotes(char *s, int *pos, t_env *env_lst);
 
 /*************** expand quotes **************/
 
 char	*expand_inside_single_quotes(char *s, int *pos);
 char	*expand_inside_double_quotes(char *s, int *pos, t_env *env_lst);
+
+/**************** expand redirection ********************/
+
+t_redir	*expand_redir(t_redir *redir, t_env *env_lst, t_general *general);
 
 /**************  args_expansion ***************/
 

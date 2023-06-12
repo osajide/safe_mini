@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:07:56 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/11 22:12:13 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 18:12:33 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ char	*display_prompt(void)
 	// user = ft_strjoin("\033[1;34m -> minishell@", user);
 	// prm = ft_strjoin(user, " : \033[0m");
 	// str = join_with_free(prm, str);
-	// line = readline("\033[1;33m> minishell $ \033[0m");
-	line = get_next_line(0);
+	if(isatty(0))
+		line = readline("\033[1;33m> minishell $ \033[0m");
+	else
+		line = get_next_line(0);
 	if (!line)
 		exit(EXIT_FAILURE);
 	line = ft_strtrim(line, "\n");

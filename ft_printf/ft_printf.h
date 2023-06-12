@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 11:20:30 by osajide           #+#    #+#             */
-/*   Updated: 2022/10/31 10:22:52 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 16:18:42 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include<unistd.h>
 # include<stdarg.h>
 
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(int n);
-int	ft_unputnbr(unsigned int n);
-int	ft_upperhexa(unsigned int n);
-int	ft_lowerhexa(unsigned int n);
-int	ft_pointer(unsigned long n);
-int	ft_printf(const char *s, ...);
+int	ft_putchar(char c, int fd);
+int	ft_putstr(char *s, int fd);
+int	ft_putnbr(int n, int fd);
+int	ft_unputnbr(unsigned int n, int fd);
+int	ft_upperhexa(unsigned int n, int fd);
+int	ft_lowerhexa(unsigned int n, int fd);
+int	ft_pointer(unsigned long n, int fd);
+int	ft_printf(int fd, const char *s, ...);
 #endif

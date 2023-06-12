@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/28 11:49:30 by osajide           #+#    #+#              #
-#    Updated: 2023/04/07 01:21:18 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/12 16:20:50 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,16 @@ AR = ar -rcs
 all : $(NAME)
 
 %.o : %.c
-	cc $(CFLAGS) -c $<
+	@cc $(CFLAGS) -c $<
 
 $(NAME) : $(OBJ)
-	$(AR) $@ $^
+	@$(AR) $@ $^
 
 clean :
-	$(RM) $(OBJ)
+	@$(RM) $(OBJ)
 
 fclean : clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re : fclean all
 

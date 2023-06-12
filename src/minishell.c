@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/11 20:53:50 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 18:17:58 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "../inc/expander.h"
 #include "../inc/execution.h"
 #include <stdio.h>
+#include <stdlib.h>
+
+t_general	general;
 
 void	clear_lst(t_list *lst)
 {
@@ -68,7 +71,6 @@ void	minishell(char **env)
 	char	*line;
 	t_list	*lst;
 	t_cmd	*cmd;
-	t_general	general;
 	int		cmd_count;
 
 	lst = NULL;
@@ -77,17 +79,18 @@ void	minishell(char **env)
 		line = display_prompt();
 		if(line && line[0])
 		{	
-			if (check_quotes(line))
+			if (check_quotes(line, &general))
 			{
 				loop_on_input(line, &lst);
 				if (lst)
 				{
-					if (!analyzer(lst))
+					if (!analyzer(lst, &general))
 					{
-						//print_linked_list(lst);
+						// print_linked_list(lst);
 						cmd = fill_struct_cmd(lst, &general.nbr_cmd);
-						cmd = expander(cmd, general.nbr_cmd, env);
-						execute_multiple_cmd(cmd, &general, env);
+						cmd = expander(cmd, &general, env);
+						if(cmd)
+							execute_multiple_cmd(cmd, &general, env);
 					}
 				}
 			}

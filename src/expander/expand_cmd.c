@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:26:45 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/11 23:04:13 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 18:19:20 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*replace_spaces(char *var)
 	return (var);
 }
 
-void	expand_redir_string(t_redir *redir, t_env *env_lst, t_redir **new_redir)
+int	expand_redir_string(t_redir *redir, t_env *env_lst, t_redir **new_redir, t_general *general)
 {
 	int		i;
 	char	*temp;
@@ -61,101 +61,28 @@ void	expand_redir_string(t_redir *redir, t_env *env_lst, t_redir **new_redir)
 			i++;
 		}
 		if (split_word_count(temp, "\x06") != 1)
+		{
+			general->exit_status = 1;
 			ft_printf(2, "minishell: %s: ambiguous redirect\n", ambiguous);
+			return 0;
+		}
 		else
 			add_redir_node_back(new_redir, new_redir_node(temp, redir->type));
 	}
+	return 1;
 }
 
-t_redir	*expand_redir(t_redir *redir, t_env *env_lst)
+t_redir	*expand_redir(t_redir *redir, t_env *env_lst, t_general *general)
 {
 	t_redir	*new_redir;
 	
 	new_redir = NULL;
 	while (redir)
 	{
-		expand_redir_string(redir, env_lst, &new_redir);
+		if(!expand_redir_string(redir, env_lst, &new_redir, general))
+			return NULL;
 		redir = redir->next;
 	}
 	clear_redir_list(redir);
 	return (new_redir);
 }
-
-void	expand_cmd(t_cmd *cmd, t_env *env_lst)
-{	
-	cmd->args = expand_args(cmd->args, env_lst);
-	// t_args	*tmp;
-	// tmp = cmd->args;
-	// while (tmp)
-	// {
-	// 	printf("\n---------------------------------------------------------------------\n");
-	// 	printf("\n\t\033\033[1;31m[expand_cmd]\033[0m  \033[1;32mcmd->args->argument =\033[0m (%s)\n", tmp->argument);
-	// 	printf("\n---------------------------------------------------------------------\n");
-	// 	tmp = tmp->next;
-	// }
-	cmd->redir = expand_redir(cmd->redir, env_lst);
-	// printf("cmd->redir->file = (%s)\n", cmd->redir->file);
-	// t_redir	*tmp2;
-	// tmp2 = cmd->redir;
-	// while (tmp2)
-	// {
-		// printf("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
-		// printf("\n\t\033\033[1;31m[expand_cmd]\033[0m  \033[1;32mcmd->redir->file =\033[0m (%s)\n", tmp2->file);
-		// printf("\n\t\033\033[1;31m[expand_cmd]\033[0m  \033[1;32mcmd->redir->type =\033[0m %d\n", tmp2->type);
-		// printf("\n				>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
-		// tmp2 = tmp2->next;
-	// }
-}
-
-
-
-
-
-
-
-
-
-/*
-echo " $ "
-echo " $? "
-echo $''$""$' '$" "$'?'$"?"$'? '$"? "" $ "" $? "
-echo $'USER'
-echo $"USER"
-echo $'USER '
-echo $"USER "
-echo " $ "
-echo " $USER "
-echo $'USERR'
-echo $"USERR"
-echo $'USERR '
-echo $"USERR "
-echo " $ "
-echo " $USERR "
-echo $''$""$' '$" "$'USER'$"USER"$'USER '$"USER "" $ "" $USER "
-echo $?$?$?$?$?$?$?$
-echo $'USER'
-echo $"USER"
-echo '$USER'
-echo "$USER"
-echo "'$USER'"
-echo '"$USER"'
-echo $USER"'"
-echo $USER""
-echo ''$USER
-echo $'USER'$"USER"'$USER'"$USER""'$USER'"'"$USER"'$USER"'"$USER""''$USER
-echo $?$USER
-export 'USER'=YO
-echo $'USER'
-exit
-
-Stranges cases : not supported
-echo $''
-echo $""
-echo $' '
-echo $" "
-echo $'?'
-echo $"?"
-echo $'? '
-echo $"? "
-echo " $"USER
-*/

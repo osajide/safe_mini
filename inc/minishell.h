@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:18:34 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/11 23:03:48 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 17:06:07 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # include <readline/history.h>
 # include "types.h"
 # include "lexer.h"
+# include "parser.h"
+
+extern t_general	general;
 
 /************ prompt ***************/
 
@@ -35,7 +38,7 @@ char	*display_prompt(void);
 /* ========== handling_input ========= */
 
 void	check_input(char *line);
-int		check_quotes(char *str);
+int		check_quotes(char *str, t_general *general);
 int		check_pipes(char *str, char c);
 
 /************ main function ********/

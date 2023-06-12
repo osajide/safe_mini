@@ -6,13 +6,13 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:07:48 by osajide           #+#    #+#             */
-/*   Updated: 2022/11/01 12:57:33 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/12 16:16:31 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
 
-int	ft_lowerhexa(unsigned int n)
+int	ft_lowerhexa(unsigned int n, int fd)
 {
 	int		count;
 	char	*hex;
@@ -20,11 +20,11 @@ int	ft_lowerhexa(unsigned int n)
 	hex = "0123456789abcdef";
 	count = 0;
 	if (n < 16)
-		count = ft_putchar(hex[n]);
+		count = ft_putchar(hex[n], fd);
 	else
 	{
-		count = ft_lowerhexa((n / 16));
-		count += ft_lowerhexa((n % 16));
+		count = ft_lowerhexa((n / 16), fd);
+		count += ft_lowerhexa((n % 16), fd);
 	}
 	return (count);
 }
