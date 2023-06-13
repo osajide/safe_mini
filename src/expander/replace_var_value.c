@@ -6,12 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 20:52:39 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/09 22:44:57 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 18:34:09 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/expander.h"
-#include <stdio.h>
+#include "../../inc/minishell.h"
 
 void	free_split(char **s)
 {

@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/12 22:25:18 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 22:27:25 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../inc/parser.h"
 #include "../inc/expander.h"
 #include "../inc/execution.h"
+#include <readline/history.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -71,14 +72,18 @@ void	minishell(char **env)
 	char	*line;
 	t_list	*lst;
 	t_cmd	*cmd;
+	t_env	*env_lst;
 
+	// general = malloc(sizeof(t_general));
+	// general.exit_status = 0;
+	env_lst = convert_env_to_list(env);
 	lst = NULL;
 	while (1)
 	{
 		line = display_prompt();
 		if (line && line[0])
 		{	
-			if (check_quotes(line, &general))
+			if (check_quotes(line))
 			{
 				loop_on_input(line, &lst);
 				if (lst)
@@ -87,13 +92,14 @@ void	minishell(char **env)
 					{
 						// print_linked_list(lst);
 						general.should_exec = 1;
-						cmd = fill_struct_cmd(lst, &general.nbr_cmd);
-						cmd = expander(cmd, &general, env);
+						cmd = fill_struct_cmd(lst);
+						cmd = expander(cmd, env_lst);
 						if (general.should_exec == 1)
-							execute_multiple_cmd(cmd, &general, env);
+							execution_commands(cmd, env_lst);
 					}
 				}
 			}
+			
 			free(line);
 			clear_lst(lst);
 			lst  = NULL;

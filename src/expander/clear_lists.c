@@ -6,11 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 21:20:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/09 22:28:41 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 18:35:34 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/expander.h"
+#include "../../inc/minishell.h"
 
 void	clear_args_list(t_args *args)
 {

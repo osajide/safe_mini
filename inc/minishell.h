@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:18:34 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/12 17:06:07 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 22:19:38 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # include "types.h"
 # include "lexer.h"
 # include "parser.h"
+#include "builtin_cmd.h"
+#include "execution.h"
+#include "expander.h"
 
 extern t_general	general;
 
@@ -38,15 +41,16 @@ char	*display_prompt(void);
 /* ========== handling_input ========= */
 
 void	check_input(char *line);
-int		check_quotes(char *str, t_general *general);
+int		check_quotes(char *str);
 int		check_pipes(char *str, char c);
 
 /************ main function ********/
 
 void	minishell(char **env);
-;
-/************ CHECK TYPE COMMAND *************/
 
+/************ UTILS *************/
+
+t_env	*convert_env_to_list(char **env);
 // void check_type_cmd(t_list *lst);
 
 #endif

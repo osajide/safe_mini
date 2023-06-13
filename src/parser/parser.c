@@ -6,11 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:46:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/11 20:53:41 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 22:19:21 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "../../inc/minishell.h"
 #include <stdio.h>
 
 int	command_number(t_list *lst)
@@ -130,17 +130,17 @@ void	print_parser(t_cmd *cmd, int count_cmd)
 	}
 }
 
-t_cmd	*fill_struct_cmd(t_list *lst, int *cmd_count)
+t_cmd	*fill_struct_cmd(t_list *lst)
 {
 	t_cmd	*cmd;
 	int		i;
 	int		pos;
 	
-	*cmd_count = command_number(lst);
-	cmd = malloc(*cmd_count * sizeof(t_cmd));
+	general.nbr_cmd = command_number(lst);
+	cmd = malloc(general.nbr_cmd * sizeof(t_cmd));
 	pos = 0;
 	i = 0;
-	while (i < *cmd_count)
+	while (i < general.nbr_cmd)
 	{
 		cmd[i].args = get_arg(lst, &pos);
 		cmd[i].redir = fill_struct_redir(lst);
@@ -151,6 +151,6 @@ t_cmd	*fill_struct_cmd(t_list *lst, int *cmd_count)
 			lst = lst->next;
 		pos = 0;
 	}
-	//print_parser(cmd, *cmd_count);
+	// print_parser(cmd, general.nbr_cmd);
 	return (cmd);
 }

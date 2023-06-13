@@ -6,11 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:36:47 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/09 17:52:50 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 18:34:14 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/expander.h"
+#include "../../inc/minishell.h"
 
 int	in_charset(char c, char *charset)
 {

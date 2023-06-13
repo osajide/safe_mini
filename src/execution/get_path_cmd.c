@@ -6,11 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:45 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/12 23:28:55 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 21:45:33 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/execution.h"
+#include "../../inc/minishell.h"
 
 char	*get_path(char **env)
 {
@@ -56,7 +56,7 @@ char	*check_path(char *cmd, char *path)
 			return (last_path);
 		free(last_path);
 	}
-	ft_printf(2, "minishell: %s: comand not found\n", cmd);
+	ft_printf(2, "minishell: %s: command not found\n", cmd);
 	return (NULL);
 }
 

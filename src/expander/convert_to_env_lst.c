@@ -6,13 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:45:34 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/10 17:00:37 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 18:33:48 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/types.h"
-#include "../../inc/expander.h"
-#include <stdio.h>
+#include "../../inc/minishell.h"
 
 t_env	*add_new_env_node(char *id, char *content)
 {

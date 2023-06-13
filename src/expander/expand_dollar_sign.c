@@ -6,14 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:33:29 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/12 21:46:14 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 22:19:21 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/expander.h"
-#include <limits.h>
-#include <stdint.h>
-#include <stdio.h>
+#include "../../inc/minishell.h"
 
 char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 {

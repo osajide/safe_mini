@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:06:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/12 18:23:04 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 22:19:21 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	next_quote(char *line, int *i, int ascii)
 	return (count);
 }
 
-int	check_quotes(char *line, t_general *general)
+int	check_quotes(char *line)
 {
 	int	i;
 
@@ -57,13 +57,13 @@ int	check_quotes(char *line, t_general *general)
 		{
 			i++;
 			if (next_quote(line, &i, 34) == 1)
-				return (general->exit_status = 258, ft_putstr_fd("minishell: syntax error: unexpected end of file\n", 2), 0);
+				return (general.exit_status = 258, ft_putstr_fd("minishell: syntax error: unexpected end of file\n", 2), 0);
 		}
 		else if (line[i] == 39)
 		{
 			i++;
 			if (next_quote(line, &i, 39) == 1)
-				return (general->exit_status = 258, ft_putstr_fd("minishell: syntax error: unexpected end of file\n", 2), 0);
+				return (general.exit_status = 258, ft_putstr_fd("minishell: syntax error: unexpected end of file\n", 2), 0);
 		}
 		i++;
 	}

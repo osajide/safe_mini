@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 20:01:06 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/12 22:08:01 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 22:04:38 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_redir
 {
 	char			*file;
 	t_token			type;
+	int				is_ambiguous;
 	struct s_redir	*next;
 }	t_redir;
 

@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:13:36 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/12 20:31:29 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/13 21:36:26 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,31 @@ char *join_with_free(char *str, char *buff)
 	return tmp;
 }
 
-void	ft_echo(t_list *lst)
+void	ft_echo(t_args *args)
 {
-	char	*line;
-	int		i;
+	char	*temp;
 
-	i = 0;
-	lst = lst->next;
-	if (lst && !ft_strncmp(lst->data->content, "-n", ft_strlen(lst->data->content)))
+	if (!args)
 	{
-		i = 1;
-		lst = lst->next;
-	}
-	while (lst && lst->data->token == 1)
-	{
-		line = lst->data->content;
-		if (lst->next || lst->data->token == 1)
-			line = join_with_free(line, " ");
-		printf("%s", line);
-		lst = lst->next;
-	}
-	if(i == 0)
 		printf("\n");
-	general.exit_status = 0;
+		return ;
+	}
+	if (args)
+	{
+		temp = args->argument;
+		if (!ft_strncmp(temp, "-n", ft_strlen(temp)))
+			args = args->next;
+		if (args)
+		{
+			while (args)
+			{
+				printf("%s", args->argument);
+				if (args->next)
+					printf(" ");
+				args = args->next;
+			}
+		}
+	}
+	if (ft_strncmp(temp, "-n", ft_strlen(temp)))
+		printf("\n");
 }
