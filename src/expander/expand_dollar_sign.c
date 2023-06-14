@@ -6,11 +6,25 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:33:29 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/14 16:15:04 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 16:42:53 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+void	skip_dollars(char *s, int *pos)
+{
+	int	check;
+
+	check = 0;
+	while (s[*pos] == '$')
+	{	
+		check++;
+		(*pos)++;
+	}
+	if (check > 0 && check % 2 != 0)
+		(*pos)--;
+}
 
 char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 {
@@ -21,6 +35,7 @@ char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 	i = *pos;
 	temp = NULL;
 	(*pos)++;
+	skip_dollars(s, pos);
 	if (!s[*pos])
 		return ((*pos)-- , ft_join_char(temp, '$'));
 	else if (s[*pos] == '?')
