@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 18:44:27 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/13 22:48:41 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 15:10:30 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,39 @@ char	*env_content(char *var)
 	return (env_content);
 }
 
+void	put_new_str(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '\"' || s[i] == '$')
+			printf("\\");
+		printf("%c", s[i]);
+		i++;
+	}
+}
+
+int	check_var_identifier(char *s)
+{
+	int	i;
+
+	i = 1;
+	if (!((s[0] >= 'a' && s[0] <= 'z') || (s[0] >= 'A' && s[0] <= 'Z') || (s[0] == '_')))
+		return (0);
+	else
+	{
+		while (s[i])
+		{
+			if (!((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z') || (s[i] == '_') || (s[i] >= '0' && s[i] <= '9')))
+				return (0);
+			i++;
+		}
+	}
+	return (1);
+}
+
 void	ft_export(t_args *args, t_env *env_lst)
 {
 	t_env	*temp;
@@ -75,7 +108,11 @@ void	ft_export(t_args *args, t_env *env_lst)
 		{
 			printf("declare -x %s", temp->id);
 			if (temp->content)
-				printf("=\"%s\"\n", temp->content);
+			{
+				printf("=\"");
+				put_new_str(temp->content);
+				printf("\"\n");
+			}
 			else
 				printf("\n");
 			temp = temp->next;
@@ -85,18 +122,26 @@ void	ft_export(t_args *args, t_env *env_lst)
 	{
 		while (args)
 		{
-			if (!export_new_value(env_lst, env_id(args->argument),  env_content(args->argument)))
+			if (check_var_identifier(env_id(args->argument)))
 			{
-				ptr = ft_strchr(args->argument, '=');
-				if (!ptr)
-					add_env_node_back(&env_lst, add_new_env_node(args->argument, NULL));
-				else
+				if (!export_new_value(env_lst, env_id(args->argument),  env_content(args->argument)))
 				{
-					if (!ft_strncmp(ptr, "=", ft_strlen(ptr)))
-						add_env_node_back(&env_lst, add_new_env_node(env_id(args->argument), ""));
+					ptr = ft_strchr(args->argument, '=');
+					if (!ptr)
+						add_env_node_back(&env_lst, add_new_env_node(args->argument, NULL));
 					else
-						add_env_node_back(&env_lst, add_new_env_node(env_id(args->argument), env_content(args->argument)));
+					{
+						if (!ft_strncmp(ptr, "=", ft_strlen(ptr)))
+							add_env_node_back(&env_lst, add_new_env_node(env_id(args->argument), ""));
+						else
+							add_env_node_back(&env_lst, add_new_env_node(env_id(args->argument), env_content(args->argument)));
+					}
 				}
+			}
+			else
+			{
+				general.exit_status = 1;
+				printf("minishell: export: `%s': not a valid identifier\n", args->argument);
 			}
 			args = args->next;
 		}

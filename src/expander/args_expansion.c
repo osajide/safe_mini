@@ -6,11 +6,12 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 12:58:50 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/13 18:33:28 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 15:39:24 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+#include <stdio.h>
 
 void	expand_args_string(char *s, t_env *env_lst, t_args **new_args)
 {

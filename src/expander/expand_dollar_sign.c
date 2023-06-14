@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:33:29 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/13 22:19:21 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 15:38:56 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 		if (!env_lst)
 		{
 			ft_bzero(temp, ft_strlen(temp));
-			return (temp);
+			return ((*pos)--, temp);
 		}
 	}
 	return ((*pos)--, temp);
