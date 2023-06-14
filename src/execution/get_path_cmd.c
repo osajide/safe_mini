@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:45 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 16:52:51 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 19:34:55 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char	*check_path(char *cmd, char *path)
 		free(last_path);
 	}
 	ft_printf(2, "minishell: %s: command not found\n", cmd);
+	general.exit_status = 127;
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:56:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 17:58:08 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 19:22:43 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	handle_file_out(t_redir *redir);
 
 char	**get_new_arg(t_cmd *cmd);
 char	**dup_lstenv(t_env *env);
-int		builtin_cmd(t_args *lst, t_env **env);
+int		builtin_cmd(t_args *args, t_env **env);
 char	*ft_getenv(t_env *env, char *find);
 int		change_value_env(t_env *env, char *key,char *new_value);
 

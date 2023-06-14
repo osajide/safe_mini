@@ -6,14 +6,14 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:11:53 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/11 16:59:13 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 21:19:13 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parser.h"
 #include <stdio.h>
 
-t_redir	*new_redir_node(char *file, int type)
+t_redir	*new_redir_node(char *file, int type, int ambiguous)
 {
 	t_redir	*redir;
 
@@ -22,6 +22,7 @@ t_redir	*new_redir_node(char *file, int type)
 		return (0);
 	redir->file = file;
 	redir->type = type;
+	redir->ambiguous = ambiguous;
 	redir->next = NULL;
 	return (redir);
 }

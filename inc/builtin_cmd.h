@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:50:25 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 17:22:25 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 19:23:10 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	change_dir(t_args *arg, t_env *env);
 void	ft_export(t_args *args, t_env *env_lst);
 void	ft_env(t_env *env, t_args *args);
 void	ft_unset(t_args *args, t_env **env_lst);
-
+void	ft_exit(t_args **args, t_env **env_lst);
 
 /************** BUILTIN UTILS ************/
 

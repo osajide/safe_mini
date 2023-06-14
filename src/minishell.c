@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 17:59:12 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 22:10:37 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	clear_lst(t_list *lst)
 		cur  = lst;
 		lst = lst->next;
 		free(cur);
+		cur = NULL;
 	}
 }
 
@@ -91,13 +92,12 @@ void	minishell(char **env)
 						// print_linked_list(lst);
 						general.should_exec = 1;
 						cmd = fill_struct_cmd(lst);
+						// clear_lst(lst);
 						cmd = expander(cmd, env_lst);
-						if (general.should_exec == 1)
-							execution_commands(cmd, &env_lst);
+						execution_commands(cmd, &env_lst);
 					}
 				}
 			}
-			
 			free(line);
 			clear_lst(lst);
 			lst  = NULL;

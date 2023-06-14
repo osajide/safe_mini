@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:04:31 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 17:59:42 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 19:22:34 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int	builtin_cmd(t_args *args, t_env **env)
 		return (ft_env(*env, args->next), 0);
 	if (!ft_strncmp(args->argument, "unset", 5))
 		return (ft_unset(args->next, env), 0);
+	if (!ft_strncmp(args->argument, "exit", 4))
+		return (ft_exit(&args, env), 0);
 	return (1);
 }
 

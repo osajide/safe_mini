@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:03:24 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 17:57:46 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 22:26:08 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int		open_files(t_redir *redir)
 
 	while (redir)
 	{
+		// ft_printf(2,"redir->file = %s\n", redir->file);
+		// ft_printf(2, "redir->type = %d\n", redir->type);
 		if (redir->type == REDIR_IN)
 		{
 			if (handle_file_in(redir))
@@ -30,7 +32,7 @@ int		open_files(t_redir *redir)
 				dup2(fd_in, 0);
 				close(fd_in);
 			}
-			exit(general.exit_status);
+		//exit(general.exit_status);
 		}
 		else if (redir->type == REDIR_OUT || redir->type == APPEND_REDIR)
 		{

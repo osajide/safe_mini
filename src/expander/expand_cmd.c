@@ -6,11 +6,12 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:26:45 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/13 22:19:21 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 22:09:42 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+#include <stdio.h>
 
 char	*replace_spaces(char *var)
 {
@@ -33,9 +34,11 @@ int	expand_redir_string(t_redir *redir, t_env *env_lst, t_redir **new_redir)
 	char	*var;
 	char	*ambiguous;
 	int		is_dollar;
+	int		is_ambiguous;
 
 	i = 0;
 	ambiguous = redir->file;
+	is_ambiguous = NOTHING;
 	temp = NULL;
 	var = NULL;
 	if (redir->type != HEREDOC)
@@ -58,24 +61,13 @@ int	expand_redir_string(t_redir *redir, t_env *env_lst, t_redir **new_redir)
 				temp = ft_join_char(temp, redir->file[i]);
 			i++;
 		}
-		
 		if (split_word_count(temp, "\x06") != 1)
 		{
 			if (!is_dollar && temp && !*temp)
-			{
-				redir->is_ambiguous = 0;
-				// general.exit_status = 1;
-				ambiguous = ft_strtrim(ambiguous, "\"'");
-				ft_printf(2, "minishell: %s: No such file or directory\n", ambiguous);
-				return (0);
-			}
-			redir->is_ambiguous = 1;
-			// general.exit_status = 1;
-			ft_printf(2, "minishell: %s: ambiguous redirect\n", ambiguous);
-			return (0);
+				is_ambiguous = NOT_AMBIGUOUS;
+			is_ambiguous = IS_AMBIGUOUS;
 		}
-		else
-			add_redir_node_back(new_redir, new_redir_node(temp, redir->type));
+		add_redir_node_back(new_redir, new_redir_node(temp, redir->type, is_ambiguous));
 	}
 	return (1);
 }
@@ -87,8 +79,7 @@ t_redir	*expand_redir(t_redir *redir, t_env *env_lst)
 	new_redir = NULL;
 	while (redir)
 	{
-		if(!expand_redir_string(redir, env_lst, &new_redir))
-			general.should_exec = 0;
+		expand_redir_string(redir, env_lst, &new_redir);
 		redir = redir->next;
 	}
 	clear_redir_list(redir);

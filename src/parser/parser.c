@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:46:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/13 22:19:21 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 22:25:30 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_redir	*fill_struct_redir(t_list *lst)
 			lst = lst->next;
 			if (lst && (lst->data->token == WORD || lst->data->token == ENV))
 				add_redir_node_back(&redir,
-					new_redir_node(lst->data->content, lst->prev->data->token));
+					new_redir_node(lst->data->content, lst->prev->data->token, NOTHING));
 		}
 		lst = lst->next;
 	}
