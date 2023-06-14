@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:13:36 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 15:42:24 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 22:55:28 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_echo(t_args *args)
 	compare = 0;
 	if (!args)
 	{
-		printf("\n");
+		ft_printf(1, "\n");
 		return ;
 	}
 	if (args)
@@ -50,13 +50,13 @@ void	ft_echo(t_args *args)
 			while (args)
 			{
 				if (args->argument[0] != '\0')
-					printf("%s", args->argument);
+					ft_printf(1,"%s", args->argument);
 				if (args->next)
-					printf(" ");
+					ft_printf(1, " ");
 				args = args->next;
 			}
 		}
 	}
 	if (!compare_char(temp + 1, 'n', ft_strlen(temp + 1)))
-		printf("\n");
+		ft_printf(1, "\n");
 }

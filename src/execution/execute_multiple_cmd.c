@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:00:51 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 22:10:43 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 22:50:03 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,21 @@ void	execution_commands(t_cmd *cmd, t_env **env)
 {
 	int	save_fd[2];
 
-	if (general.nbr_cmd == 1 && cmd->args && !builtin_cmd(cmd->args, env))
+	if (general.nbr_cmd == 1 && cmd->args)
 	{
 		save_fd[0] = dup(STDIN_FILENO);
 		save_fd[1] = dup(STDOUT_FILENO);
-		open_files(cmd->redir);
+		if (!open_files(cmd->redir))
+		{
+		general.exit_status = 1;
+			return;
+		}
+		if (cmd->args && !builtin_cmd(cmd->args, env))
+		{
+			dup2(save_fd[0], 0);
+			dup2(save_fd[1], 1);
+			return;
+		}
 		dup2(save_fd[0], 0);
 		dup2(save_fd[1], 1);
 	}

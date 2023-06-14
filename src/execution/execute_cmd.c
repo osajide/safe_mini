@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:03:24 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 22:26:08 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 22:46:06 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int		open_files(t_redir *redir)
 				dup2(fd_in, 0);
 				close(fd_in);
 			}
+			else 
+				return (0);
 		//exit(general.exit_status);
 		}
 		else if (redir->type == REDIR_OUT || redir->type == APPEND_REDIR)
@@ -47,6 +49,8 @@ int		open_files(t_redir *redir)
 				dup2(fd_out, 1);
 				close(fd_out);
 			}
+			else 
+				return (0);
 		}
 		redir = redir->next;
 	}
