@@ -6,11 +6,12 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:04:31 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 13:12:34 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:59:42 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+#include <stdio.h>
 
 char	**dup_lstenv(t_env *env)
 {
@@ -70,18 +71,20 @@ char	**get_new_arg(t_cmd *cmd)
 	return (new);
 }
 
-int	builtin_cmd(t_args *args, t_env *env)
+int	builtin_cmd(t_args *args, t_env **env)
 {
 	if (!ft_strncmp(args->argument, "cd", 2))
-		return (change_dir(args->next, env), 0);
+		return (change_dir(args->next, *env), 0);
 	if (!ft_strncmp(args->argument, "pwd", 3))
 		return (ft_pwd(), 0);
 	if (!ft_strncmp(args->argument, "export", 6))
-		return (ft_export(args->next ,env), 0);
+		return (ft_export(args->next ,*env), 0);
 	if (!ft_strncmp(args->argument, "echo", 4))
 		return (ft_echo(args->next), 0);
 	if (!ft_strncmp(args->argument, "env", 3))
-		return (ft_env(env, args->next), 0);
+		return (ft_env(*env, args->next), 0);
+	if (!ft_strncmp(args->argument, "unset", 5))
+		return (ft_unset(args->next, env), 0);
 	return (1);
 }
 

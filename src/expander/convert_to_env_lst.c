@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:45:34 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/13 18:33:48 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:05:38 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_env	*add_new_env_node(char *id, char *content)
 	new_env_node->id = id;
 	new_env_node->content = content;
 	new_env_node->next = NULL;
+	new_env_node->prev = NULL;
 	return (new_env_node);
 }
 
@@ -39,6 +40,7 @@ void	add_env_node_back(t_env **env, t_env *new_env_node)
 		temp = temp->next;
 	temp->next = new_env_node;
 	new_env_node->next = NULL;
+	new_env_node->prev = temp;
 }
 
 char	*get_env_id(char *env_var)

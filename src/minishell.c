@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/13 22:27:25 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:59:12 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ void	minishell(char **env)
 	t_cmd	*cmd;
 	t_env	*env_lst;
 
-	// general = malloc(sizeof(t_general));
-	// general.exit_status = 0;
 	env_lst = convert_env_to_list(env);
 	lst = NULL;
 	while (1)
@@ -95,7 +93,7 @@ void	minishell(char **env)
 						cmd = fill_struct_cmd(lst);
 						cmd = expander(cmd, env_lst);
 						if (general.should_exec == 1)
-							execution_commands(cmd, env_lst);
+							execution_commands(cmd, &env_lst);
 					}
 				}
 			}

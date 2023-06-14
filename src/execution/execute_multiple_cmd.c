@@ -6,14 +6,14 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:00:51 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 15:57:26 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:57:34 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 #include <stdio.h>
 
-void	execution_commands(t_cmd *cmd, t_env *env)
+void	execution_commands(t_cmd *cmd, t_env **env)
 {
 	int	save_fd[2];
 
@@ -34,7 +34,7 @@ void	execution_commands(t_cmd *cmd, t_env *env)
 	execute_multiple_cmd(cmd, env);
 }
 
-int execute_multiple_cmd(t_cmd *cmd, t_env *env)
+int execute_multiple_cmd(t_cmd *cmd, t_env **env)
 {
 	int		i;
 	int		fd[2];

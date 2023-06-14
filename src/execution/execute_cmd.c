@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:03:24 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 13:09:47 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:57:46 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		open_files(t_redir *redir)
 	return (1);
 }
 
-void    execute_cmd(t_cmd *cmd, t_env *env)
+void    execute_cmd(t_cmd *cmd, t_env **env)
 {
 	char	*cmd_exec;
 	char	**ar;
@@ -59,7 +59,7 @@ void    execute_cmd(t_cmd *cmd, t_env *env)
 
 	if (cmd->args)
 	{
-		new_env = dup_lstenv(env);
+		new_env = dup_lstenv(*env);
 		cmd_exec = get_path_cmd(cmd, new_env);
 		if (!cmd_exec)
 			exit(127);

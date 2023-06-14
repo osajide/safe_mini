@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:45 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/13 21:45:33 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 16:52:51 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ char	*get_path(char **env)
 	while (env[++i])
 	{
 		if (ft_strncmp(env[i], "PATH", 4) == 0)
-		{
 			return (env[i] + 5);
-		}
 	}
 	return (PATH);
 }

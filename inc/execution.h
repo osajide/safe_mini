@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:56:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/13 22:22:07 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:58:08 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 
 #define PATH "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki"
 
-int		execute_simple_cmd(t_cmd *cmd, t_general *general, char **env);
-void	execution_commands(t_cmd *cmd, t_env *env);
-int		execute_multiple_cmd(t_cmd *cmd, t_env *env);
-void	execute_cmd(t_cmd *cmd, t_env *env);
+void	execution_commands(t_cmd *cmd, t_env **env);
+int		execute_multiple_cmd(t_cmd *cmd, t_env **env);
+void	execute_cmd(t_cmd *cmd, t_env **env);
 int		open_files(t_redir *redir);
 
 
@@ -34,7 +33,7 @@ int	handle_file_out(t_redir *redir);
 
 char	**get_new_arg(t_cmd *cmd);
 char	**dup_lstenv(t_env *env);
-int		builtin_cmd(t_args *lst, t_env *env);
+int		builtin_cmd(t_args *lst, t_env **env);
 char	*ft_getenv(t_env *env, char *find);
 int		change_value_env(t_env *env, char *key,char *new_value);
 
