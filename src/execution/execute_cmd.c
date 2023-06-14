@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:03:24 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/13 22:26:59 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 13:09:47 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,18 @@ int		open_files(t_redir *redir)
 			}
 			exit(general.exit_status);
 		}
-		else if (redir->type == REDIR_OUT)
+		else if (redir->type == REDIR_OUT || redir->type == APPEND_REDIR)
 		{
 			if (handle_file_out(redir))
 			{
-				fd_out = open(redir->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+				if (redir->type == REDIR_OUT)
+					fd_out = open(redir->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+				else
+					fd_out = open(redir->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 				if (fd_out < 0)
-					return (perror(redir->file), 0);
+					return (0);
 				dup2(fd_out, 1);
-				close(fd_out); 
+				close(fd_out);
 			}
 		}
 		redir = redir->next;
@@ -64,5 +67,4 @@ void    execute_cmd(t_cmd *cmd, t_env *env)
 		if (execve(cmd_exec, ar, new_env) < 0)
 			exit(1);
 	}
-	exit (0);
 }

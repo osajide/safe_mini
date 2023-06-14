@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_cmd.h                                      :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/22 16:50:25 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 13:13:01 by osajide          ###   ########.fr       */
+/*   Created: 2023/06/14 13:10:14 by osajide           #+#    #+#             */
+/*   Updated: 2023/06/14 13:11:55 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_CMD_H
-# define BUILTIN_CMD_H
+#include "../../inc/minishell.h"
 
-# include "types.h"
+void    ft_env(t_env *env, t_args *args)
+{
+	t_env	*tmp;
 
-/************* BUILIN COMMAND ************/
-
-void	ft_echo(t_args *args);
-void	ft_pwd(void);
-void	change_dir(t_args *arg, t_env *env);
-void	ft_export(t_args *args, t_env *env_lst);
-void	ft_env(t_env *env, t_args *args);
-
-
-/************** BUILTIN UTILS ************/
-
-char *join_with_free(char *str, char *buff);
-
-#endif
+	tmp = env; 
+	if (!args)
+	{
+		while (tmp)
+		{
+			if (tmp->content)
+				printf("%s=%s\n",tmp->id, tmp->content);
+			tmp = tmp->next;
+		}	
+	}
+	else
+		ft_printf(2, "minishell: %s: No such file or directory\n", args->argument);
+}

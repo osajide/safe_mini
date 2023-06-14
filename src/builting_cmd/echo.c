@@ -6,26 +6,33 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:13:36 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/13 21:36:26 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 14:32:43 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+#include <stdio.h>
 
-char *join_with_free(char *str, char *buff)
+int	compare_char(char *s, char c, int len)
 {
-	char *tmp;
-	tmp = ft_strjoin(str, buff);
-	if (!tmp)
-		return (NULL);
-	free(str);
-	return tmp;
+	int	i;
+
+	i = 0;
+	while (s[i] && i < len)
+	{
+		if (s[i] != c)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 void	ft_echo(t_args *args)
 {
 	char	*temp;
+	int		compare;
 
+	compare = 0;
 	if (!args)
 	{
 		printf("\n");
@@ -33,9 +40,11 @@ void	ft_echo(t_args *args)
 	}
 	if (args)
 	{
-		temp = args->argument;
-		if (!ft_strncmp(temp, "-n", ft_strlen(temp)))
+		while (args && args->argument[0] == '-' && compare_char(args->argument + 1, 'n', ft_strlen(args->argument + 1)))
+		{
+			temp = args->argument;
 			args = args->next;
+		}
 		if (args)
 		{
 			while (args)
@@ -47,6 +56,6 @@ void	ft_echo(t_args *args)
 			}
 		}
 	}
-	if (ft_strncmp(temp, "-n", ft_strlen(temp)))
+	if (!compare_char(temp + 1, 'n', ft_strlen(temp + 1)))
 		printf("\n");
 }
