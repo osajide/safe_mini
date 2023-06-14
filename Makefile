@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/14 17:23:19 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/14 18:04:37 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ RESET = \033[0m
 
 OBJDIR		=	obj
 SRCDIR		=	src
-BUILTDIR	=	builting_cmd
+BUILTDIR	=	built-in_cmd
 LEXERDIR	=	lexer
 PARSERDIR	=	parser
 EXPANDERDIR	=	expander
