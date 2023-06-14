@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:00:51 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 13:09:31 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 15:57:26 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	execution_commands(t_cmd *cmd, t_env *env)
 {
 	int	save_fd[2];
 
-	if (general.nbr_cmd == 1)
+	if (general.nbr_cmd == 1 && cmd->args)
 	{
 		save_fd[0] = dup(STDIN_FILENO);
 		save_fd[1] = dup(STDOUT_FILENO);

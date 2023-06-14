@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:33:29 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/14 15:38:56 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/14 16:15:04 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@ char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 {
 	char	*temp;
 	int		start;
+	int		i;
 
+	i = *pos;
 	temp = NULL;
 	(*pos)++;
 	if (!s[*pos])
 		return ((*pos)-- , ft_join_char(temp, '$'));
 	else if (s[*pos] == '?')
 		return (ft_itoa(general.exit_status));
-	else if (s[*pos] == 39 || s[*pos] == 34)
+	else if (s[*pos] == '\'' || s[*pos] == '"')
 		return ((*pos)--, ft_join_char(temp, '\0'));
-	if (!((s[*pos] >= 'A' && s[*pos] <= 'Z') || (s[*pos] >= 'a' && s[*pos] <= 'z') || s[*pos] == '_'))
+	if (!(ft_isalpha(s[*pos]) || s[*pos] == '_'))
 	{
 		(*pos)++;
 		start = *pos;
@@ -36,7 +38,7 @@ char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 	else
 	{
 		start = *pos;
-		while ((s[*pos] >= 'a' && s[*pos] <= 'z') || (s[*pos] >= 'A' && s[*pos] <= 'Z') || (s[*pos] >= '0' && s[*pos] <= '9') || s[*pos] == '_')
+		while (ft_isalnum(s[*pos]) || s[*pos] == '_')
 			(*pos)++;
 		temp = ft_substr(s, start, *pos);
 		while (env_lst)
