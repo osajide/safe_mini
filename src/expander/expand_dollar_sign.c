@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:33:29 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/15 16:13:47 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 16:20:59 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ char	*handle_dollar_sign_inside_d_quotes(char *s, int *pos, t_env *env_lst)
 
 	temp = NULL;
 	(*pos)++;
+	if (s[*pos] == '?')
+		return (ft_itoa(general.exit_status));
 	if (s[*pos] == ' ')
 	{
 		start = *pos - 1;
@@ -96,7 +98,7 @@ char	*handle_dollar_sign_inside_d_quotes(char *s, int *pos, t_env *env_lst)
 	else
 	{
 		start = *pos;
-		while ((s[*pos] >= 'a' && s[*pos] <= 'z') || (s[*pos] >= 'A' && s[*pos] <= 'Z') || (s[*pos] >= '0' && s[*pos] <= '9'))
+		while (ft_isalnum(s[*pos]) || s[*pos] == '_')
 			(*pos)++;
 		temp = ft_substr(s, start, *pos);
 		while (env_lst)
