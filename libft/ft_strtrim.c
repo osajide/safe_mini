@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:18:27 by ayakoubi          #+#    #+#             */
-/*   Updated: 2022/10/15 12:42:10 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:03:00 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_cheack(char const *s, char c)
+int	check_set(char c, const char *set)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (s[i])
+	while (set[i])
 	{
-		if (s[i] == c)
+		if (set[i] == c)
 			return (1);
 		i++;
 	}
@@ -28,22 +28,29 @@ static int	ft_cheack(char const *s, char c)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	lens;
-	char	*new;
-	char	*p;
+	int		i;
+	int		begin;
+	int		end;
+	char	*strim;
 
 	if (!s1 || !set)
 		return (0);
-	i = 0;
-	p = (char *)s1;
-	lens = ft_strlen(s1) - 1;
-	if (!p)
+	begin = 0;
+	end = ft_strlen(s1);
+	while (s1[begin] && check_set(s1[begin], set))
+		begin++;
+	while (end > begin && check_set(s1[end - 1], set))
+		end--;
+	strim = malloc((end - begin + 1) * sizeof(char));
+	if (strim == 0)
 		return (0);
-	while (p[i] && ft_cheack(set, p[i]))
-			i++;
-	while (lens > 0 && ft_cheack(set, p[lens]))
-		lens--;
-	new = ft_substr(p, i, lens - i + 1);
-	return (new);
+	i = 0;
+	while (begin < end)
+	{
+		strim[i] = s1[begin];
+		i++;
+		begin++;
+	}
+	strim[i] = '\0';
+	return (strim);
 }

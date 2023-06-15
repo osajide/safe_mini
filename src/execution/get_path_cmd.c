@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:45 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 19:34:55 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 14:55:58 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	*get_path(char **env)
 	i = -1;
 	while (env[++i])
 	{
-		if (ft_strncmp(env[i], "PATH", 4) == 0)
+		if (env[i] && ft_strncmp(env[i], "PATH", 4) == 0)
 			return (env[i] + 5);
 	}
-	return (PATH);
+	return (NULL);
 }
 
 char	**split_path(char *path)
@@ -66,6 +66,8 @@ char	*get_path_cmd(t_cmd *cmd, char **env)
 	char	*path;
 	
 	path_cmd = get_path(env);
+	if (!path_cmd)
+		return (ft_printf(2, "minishell: %s: No such file or directory\n", cmd->args->argument), NULL);
 	i = -1;
 	// while (++i < help->nbr_cmd)
 	path = check_path(cmd->args->argument, path_cmd);

@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/14 19:23:24 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/15 15:00:14 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRCMAIN		=	minishell main prompt check_quotes minishell_utils
 BUILTSRC	:=	cd echo pwd export env unset exit
 LEXERSRC	:=	lexer tokenize tokenize_dollar_pipe tokenize_redirection analyzer \
 				utils
-PARSERSRC	:=	parser parser_utils
+PARSERSRC	:=	parser parser_utils heredoc
 EXPANDERSRC	:=	expander convert_to_env_lst expand_dollar_sign expand_cmd \
 				expand_inside_quotes replace_var_value split_charset clear_lists \
 				args_expansion

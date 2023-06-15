@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 22:10:37 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 16:05:47 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	minishell(char **env)
 				{
 					if (!analyzer(lst))
 					{
-						// print_linked_list(lst);
+						print_linked_list(lst);
 						general.should_exec = 1;
 						cmd = fill_struct_cmd(lst);
 						// clear_lst(lst);

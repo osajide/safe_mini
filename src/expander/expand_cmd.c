@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:26:45 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/14 22:09:42 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 16:03:32 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@ int	expand_redir_string(t_redir *redir, t_env *env_lst, t_redir **new_redir)
 			else if (redir->file[i] == '$')
 			{
 				var = handle_dollar_sign(redir->file, &i, env_lst);
+				if (!temp && !var[0])
+					is_dollar = 1;
 				var = replace_spaces(var);
 				temp = ft_strjoin(temp, var);
-				is_dollar = 1;
 			}
 			else
 				temp = ft_join_char(temp, redir->file[i]);
@@ -65,8 +66,11 @@ int	expand_redir_string(t_redir *redir, t_env *env_lst, t_redir **new_redir)
 		{
 			if (!is_dollar && temp && !*temp)
 				is_ambiguous = NOT_AMBIGUOUS;
-			is_ambiguous = IS_AMBIGUOUS;
+			else
+				is_ambiguous = IS_AMBIGUOUS;
 		}
+		else if (split_word_count(temp, "\x06") == 1)
+			temp = ft_strtrim(temp, "\x06");
 		add_redir_node_back(new_redir, new_redir_node(temp, redir->type, is_ambiguous));
 	}
 	return (1);

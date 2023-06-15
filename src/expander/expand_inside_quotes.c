@@ -6,11 +6,12 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:40:08 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/13 18:34:00 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 16:10:17 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+#include <stdio.h>
 
 char	*expand_inside_single_quotes(char *s, int *pos)
 {
@@ -34,6 +35,7 @@ char	*expand_inside_double_quotes(char *s, int *pos, t_env *env_lst)
 	temp = NULL;
 	(*pos)++;
 	start = *pos;
+	printf("temp: %s\n", temp);
 	while (s[*pos] && s[*pos] != 34)
 	{
 		if (s[*pos] == '$' && s[*pos + 1] && s[*pos + 1] != 34)
@@ -45,5 +47,6 @@ char	*expand_inside_double_quotes(char *s, int *pos, t_env *env_lst)
 			temp = ft_join_char(temp, s[*pos]);
 		(*pos)++;
 	}
+	printf("temp after: %s\n", temp);
 	return (temp);
 }

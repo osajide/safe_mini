@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:12:54 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 18:07:27 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 15:08:14 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	change_dir(t_args *arg, t_env *env)
 	{
 		home = ft_getenv(env, "HOME");	
 		if (chdir(home) < 0)
-			perror(home);
+			ft_printf(2, "minishell: cd: HOME not set\n");
 		change_value_env(env, "PWD", home);
 	}
 	else

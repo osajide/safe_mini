@@ -6,17 +6,18 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:03:24 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 22:46:06 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 15:29:35 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-#include <stdio.h>
 
 int		open_files(t_redir *redir)
 {
 	int	fd_in;
 	int	fd_out;
+	char	*hrdc;
+	char	*line;
 
 	while (redir)
 	{
@@ -52,6 +53,20 @@ int		open_files(t_redir *redir)
 			else 
 				return (0);
 		}
+		else if (redir->type == 10)
+		{
+			hrdc = NULL;
+			ft_printf(2, "hello\n");
+			while (1)
+			{
+				printf("> ");
+				line = get_next_line(0);
+				if (ft_strncmp(redir->file, ft_strtrim(line, "\n"), ft_strlen(redir->file)))
+					break;
+				hrdc = ft_strjoin(hrdc, line);
+			}
+			ft_printf(2, "", hrdc);
+		}
 		redir = redir->next;
 	}
 	return (1);
@@ -66,6 +81,11 @@ void    execute_cmd(t_cmd *cmd, t_env **env)
 	if (cmd->args)
 	{
 		new_env = dup_lstenv(*env);
+		if (!new_env)
+		{
+			ft_printf(2, "minishell: %s: No such file or directory\n", cmd->args->argument);
+			exit(127);
+		}
 		cmd_exec = get_path_cmd(cmd, new_env);
 		if (!cmd_exec)
 			exit(127);

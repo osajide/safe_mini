@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:04:31 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 19:22:34 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 15:27:46 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	**dup_lstenv(t_env *env)
 	t_env	*tmp;
 
 	i = 0;
+	if (!env)
+		return (0);
 	tmp = env;
 	while (tmp)
 	{
@@ -64,7 +66,8 @@ char	**get_new_arg(t_cmd *cmd)
 	tmp = cmd->args;
 	while (tmp)
 	{
-		new[i++] = ft_strdup(tmp->argument);
+		if (tmp->argument[0] != '\0')
+			new[i++] = ft_strdup(tmp->argument);
 		tmp = tmp->next;
 	}
 	new[i] = NULL;

@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 20:01:06 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/14 21:16:51 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 14:59:51 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_env
 typedef struct s_general
 {
 	int	nbr_cmd;
+	int	fd[2];
 	int	fd_in;
 	int	fd_out;
 	int	should_exec;
