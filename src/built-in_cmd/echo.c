@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:13:36 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 22:55:28 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 20:35:10 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_echo(t_args *args)
 			{
 				if (args->argument[0] != '\0')
 					ft_printf(1,"%s", args->argument);
-				if (args->next)
+				if (args->argument[0] != '\0' && args->next)
 					ft_printf(1, " ");
 				args = args->next;
 			}

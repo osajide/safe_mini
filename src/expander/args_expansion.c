@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 12:58:50 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/15 20:01:24 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 20:28:02 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ void	expand_args_string(char *s, t_env *env_lst, t_args **new_args)
 		else if (s[i] == '$')
 		{
 			var = handle_dollar_sign(s, &i, env_lst);
+			if (s[i + 1] == '$')
+			{
+				i++;
+				var = ft_strjoin(var, handle_dollar_sign(s, &i, env_lst));
+			}
 			if (!temp && split_word_count(var, "\t ") <= 1)
 				var = ft_strtrim(var, "\t ");
 			else if (split_word_count(var, "\t ") > 1)
@@ -50,7 +55,7 @@ void	expand_args_string(char *s, t_env *env_lst, t_args **new_args)
 			temp = ft_join_char(temp, s[i]);
 		i++;
 	}
-	if (to_join)
+	if (temp)
 		add_args_node_back(new_args, new_args_node(temp));
 }
 
