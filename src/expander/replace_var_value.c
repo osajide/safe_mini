@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 20:52:39 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/13 18:34:09 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 19:40:02 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	replace_var_in_args_list(char *before_var, char *var, t_args **new_args)
 		i++;
 	}
 	free_split(split);
-	free(var);
 	free(before_var);
 }
 

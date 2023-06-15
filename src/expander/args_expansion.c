@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 12:58:50 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/14 15:47:59 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 20:01:24 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	expand_args_string(char *s, t_env *env_lst, t_args **new_args)
 	char	*temp;
 	char	*var;
 	char	**split;
+	int		to_join;
 
 	i = 0;
 	temp = NULL;
@@ -27,6 +28,7 @@ void	expand_args_string(char *s, t_env *env_lst, t_args **new_args)
 		return ;
 	while (s[i])
 	{
+		to_join = 1;
 		if (s[i] == 39)
 			temp =  ft_strjoin(temp, expand_inside_single_quotes(s, &i));
 		else if (s[i] == 34)
@@ -34,19 +36,22 @@ void	expand_args_string(char *s, t_env *env_lst, t_args **new_args)
 		else if (s[i] == '$')
 		{
 			var = handle_dollar_sign(s, &i, env_lst);
-			if (if_should_split(var))
+			if (!temp && split_word_count(var, "\t ") <= 1)
+				var = ft_strtrim(var, "\t ");
+			else if (split_word_count(var, "\t ") > 1)
 			{
+				to_join = 0;
 				replace_var_in_args_list(temp, var, new_args);
-				return ;
 			}
-			else
+			if (to_join)
 				temp = ft_strjoin(temp, var);
 		}
 		else
 			temp = ft_join_char(temp, s[i]);
 		i++;
 	}
-	add_args_node_back(new_args, new_args_node(temp));
+	if (to_join)
+		add_args_node_back(new_args, new_args_node(temp));
 }
 
 t_args	*expand_args(t_args *args, t_env *env_lst)

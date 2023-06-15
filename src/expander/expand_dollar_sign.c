@@ -6,11 +6,12 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:33:29 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/15 16:20:59 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 20:00:35 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+#include <stdio.h>
 
 void	skip_dollars(char *s, int *pos)
 {
@@ -31,9 +32,11 @@ char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 	char	*temp;
 	int		start;
 	int		i;
+	char	*recursive;
 
 	i = *pos;
 	temp = NULL;
+	recursive = NULL;
 	(*pos)++;
 	skip_dollars(s, pos);
 	if (!s[*pos])
@@ -59,7 +62,7 @@ char	*handle_dollar_sign(char *s, int *pos, t_env *env_lst)
 		while (env_lst)
 		{
 			if (!ft_strncmp(temp, env_lst->id, ft_strlen(temp)))
-				return ((*pos)--, env_lst->content);
+				return ((*pos)--, ft_strjoin(env_lst->content, recursive));
 			env_lst = env_lst->next;
 		}
 		if (!env_lst)

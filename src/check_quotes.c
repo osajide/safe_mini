@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:06:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/13 22:19:21 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 16:57:18 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,19 @@ int	check_quotes(char *line)
 		{
 			i++;
 			if (next_quote(line, &i, 34) == 1)
-				return (general.exit_status = 258, ft_putstr_fd("minishell: syntax error: unexpected end of file\n", 2), 0);
+			{
+				ft_printf(2, "minishell: unexpected EOF while looking for matching\n");
+				exit(2);
+			}
 		}
 		else if (line[i] == 39)
 		{
 			i++;
 			if (next_quote(line, &i, 39) == 1)
-				return (general.exit_status = 258, ft_putstr_fd("minishell: syntax error: unexpected end of file\n", 2), 0);
+			{
+				ft_printf(2, "minishell: unexpected EOF while looking for matching\n");
+				exit(2);
+			}
 		}
 		i++;
 	}

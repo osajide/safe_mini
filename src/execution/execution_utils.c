@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:04:31 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/15 15:27:46 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/15 19:20:29 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,19 @@ char	**get_new_arg(t_cmd *cmd)
 
 int	builtin_cmd(t_args *args, t_env **env)
 {
-	if (!ft_strncmp(args->argument, "cd", 2))
+	if (!ft_strncmp(args->argument, "cd", -1))
 		return (change_dir(args->next, *env), 0);
-	if (!ft_strncmp(args->argument, "pwd", 3))
+	if (!ft_strncmp(args->argument, "pwd", -1))
 		return (ft_pwd(), 0);
-	if (!ft_strncmp(args->argument, "export", 6))
+	if (!ft_strncmp(args->argument, "export", -1))
 		return (ft_export(args->next ,*env), 0);
-	if (!ft_strncmp(args->argument, "echo", 4))
+	if (!ft_strncmp(args->argument, "echo", -1))
 		return (ft_echo(args->next), 0);
-	if (!ft_strncmp(args->argument, "env", 3))
+	if (!ft_strncmp(args->argument, "env", -1))
 		return (ft_env(*env, args->next), 0);
-	if (!ft_strncmp(args->argument, "unset", 5))
+	if (!ft_strncmp(args->argument, "unset", -1))
 		return (ft_unset(args->next, env), 0);
-	if (!ft_strncmp(args->argument, "exit", 4))
+	if (!ft_strncmp(args->argument, "exit", -1))
 		return (ft_exit(&args, env), 0);
 	return (1);
 }
