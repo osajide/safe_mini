@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:00:51 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 22:50:03 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/16 20:13:14 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,21 @@ void	execution_commands(t_cmd *cmd, t_env **env)
 {
 	int	save_fd[2];
 
-	if (general.nbr_cmd == 1 && cmd->args)
+	if (general.nbr_cmd == 1 && cmd->args && is_builtin(cmd->args))
 	{
 		save_fd[0] = dup(STDIN_FILENO);
 		save_fd[1] = dup(STDOUT_FILENO);
-		if (!open_files(cmd->redir))
+		if (!open_files(*cmd))
 		{
-		general.exit_status = 1;
+			general.exit_status = 1;
 			return;
 		}
-		if (cmd->args && !builtin_cmd(cmd->args, env))
-		{
-			dup2(save_fd[0], 0);
-			dup2(save_fd[1], 1);
-			return;
-		}
+		builtin_cmd(cmd->args, env);
 		dup2(save_fd[0], 0);
 		dup2(save_fd[1], 1);
 	}
-	execute_multiple_cmd(cmd, env);
+	else
+		execute_multiple_cmd(cmd, env);
 }
 
 int execute_multiple_cmd(t_cmd *cmd, t_env **env)
@@ -71,7 +67,7 @@ int execute_multiple_cmd(t_cmd *cmd, t_env **env)
 				dup2(prv_fd, 0);
 				close(fd[0]);
 			}
-			if (!open_files(cmd[i].redir))
+			if (!open_files(cmd[i]))
 				exit(1);
 			if (cmd[i].args)
 			{

@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:56:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/14 23:13:06 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/16 20:08:26 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 
 #include "types.h"
 
-#define PATH "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki"
-
 void	execution_commands(t_cmd *cmd, t_env **env);
 int		execute_multiple_cmd(t_cmd *cmd, t_env **env);
 void	execute_cmd(t_cmd *cmd, t_env **env);
-int		open_files(t_redir *redir);
+int		open_files(t_cmd cmd);
 
 
 /*********** handle in out file ***************/
@@ -36,6 +34,7 @@ char	**dup_lstenv(t_env *env);
 int		builtin_cmd(t_args *args, t_env **env);
 char	*ft_getenv(t_env *env, char *find);
 int		change_value_env(t_env *env, char *key,char *new_value);
+int		is_builtin(t_args *args);
 
 
 char	*get_path_cmd(t_cmd *cmd, char **env);

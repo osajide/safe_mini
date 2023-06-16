@@ -6,28 +6,26 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:03:24 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/15 20:28:58 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/16 19:56:19 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int		open_files(t_redir *redir)
+int		open_files(t_cmd cmd)
 {
 	int	fd_in;
 	int	fd_out;
 	char	*hrdc;
 	char	*line;
 
-	while (redir)
+	while (cmd.redir)
 	{
-		// ft_printf(2,"redir->file = %s\n", redir->file);
-		// ft_printf(2, "redir->type = %d\n", redir->type);
-		if (redir->type == REDIR_IN)
+		if (cmd.redir->type == REDIR_IN)
 		{
-			if (handle_file_in(redir))
+			if (handle_file_in(cmd.redir))
 			{
-				fd_in = open(redir->file, O_RDONLY);
+				fd_in = open(cmd.redir->file, O_RDONLY);
 				if (fd_in < 0)
 					return (0);
 				dup2(fd_in, 0);
@@ -35,16 +33,15 @@ int		open_files(t_redir *redir)
 			}
 			else 
 				return (0);
-		//exit(general.exit_status);
 		}
-		else if (redir->type == REDIR_OUT || redir->type == APPEND_REDIR)
+		else if (cmd.redir->type == REDIR_OUT || cmd.redir->type == APPEND_REDIR)
 		{
-			if (handle_file_out(redir))
+			if (handle_file_out(cmd.redir))
 			{
-				if (redir->type == REDIR_OUT)
-					fd_out = open(redir->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+				if (cmd.redir->type == REDIR_OUT)
+					fd_out = open(cmd.redir->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 				else
-					fd_out = open(redir->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
+					fd_out = open(cmd.redir->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 				if (fd_out < 0)
 					return (0);
 				dup2(fd_out, 1);
@@ -53,21 +50,12 @@ int		open_files(t_redir *redir)
 			else 
 				return (0);
 		}
-		else if (redir->type == 10)
+		else if (cmd.redir->type == HEREDOC)
 		{
-			hrdc = NULL;
-			ft_printf(2, "hello\n");
-			while (1)
-			{
-				printf("> ");
-				line = get_next_line(0);
-				if (ft_strncmp(redir->file, ft_strtrim(line, "\n"), ft_strlen(redir->file)))
-					break;
-				hrdc = ft_strjoin(hrdc, line);
-			}
-			ft_printf(2, "", hrdc);
+			dup2(cmd.h_fd[0], 0);
+			//close(cmd.h_fd[0]);
 		}
-		redir = redir->next;
+		cmd.redir = cmd.redir->next;
 	}
 	return (1);
 }

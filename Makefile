@@ -6,7 +6,7 @@
 #    By: osajide <osajide@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 11:24:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/06/15 15:00:14 by osajide          ###   ########.fr        #
+#    Updated: 2023/06/16 20:11:38 by osajide          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ EXPANDERSRC	:=	expander convert_to_env_lst expand_dollar_sign expand_cmd \
 				expand_inside_quotes replace_var_value split_charset clear_lists \
 				args_expansion
 EXECUTSRC	:=	get_path_cmd execute_cmd execution_utils execute_multiple_cmd \
-				handle_file
+				handle_file builtin_utils
 
 OBJ			:=	$(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRCMAIN)))
 SRC			:=	$(addprefix $(SRCDIR)/, $(addsuffix .c, $(SRCMAIN)))

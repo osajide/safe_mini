@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:46:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/15 20:13:01 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/16 21:15:43 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	print_parser(t_cmd *cmd, int count_cmd)
 	}
 }
 
-t_cmd	*fill_struct_cmd(t_list *lst)
+t_cmd	*fill_struct_cmd(t_list *lst, t_env *env_lst)
 {
 	t_cmd	*cmd;
 	int		i;
@@ -144,6 +144,7 @@ t_cmd	*fill_struct_cmd(t_list *lst)
 	{
 		cmd[i].args = get_arg(lst, &pos);
 		cmd[i].redir = fill_struct_redir(lst);
+		read_herdoc(cmd, env_lst);
 		i++;
 		while (lst && lst->data->token != PIPE)
 			lst = lst->next;

@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:33:01 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/15 20:13:04 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/16 21:33:36 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	minishell(char **env)
 					{
 						// print_linked_list(lst);
 						general.should_exec = 1;
-						cmd = fill_struct_cmd(lst);
+						cmd = fill_struct_cmd(lst, env_lst);
 						// clear_lst(lst);
 						cmd = expander(cmd, env_lst);
 						execution_commands(cmd, &env_lst);
