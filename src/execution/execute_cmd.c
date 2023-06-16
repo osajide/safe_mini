@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:03:24 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/16 19:56:19 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/16 22:30:41 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int		open_files(t_cmd cmd)
 		else if (cmd.redir->type == HEREDOC)
 		{
 			dup2(cmd.h_fd[0], 0);
-			//close(cmd.h_fd[0]);
+			close(cmd.h_fd[0]);
+			cmd.h_fd[0] = -1;
 		}
 		cmd.redir = cmd.redir->next;
 	}

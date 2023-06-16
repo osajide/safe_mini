@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:00:51 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/16 20:13:14 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/16 22:40:02 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	execution_commands(t_cmd *cmd, t_env **env)
 	{
 		save_fd[0] = dup(STDIN_FILENO);
 		save_fd[1] = dup(STDOUT_FILENO);
+		cmd->h_fd[0] = -1;
 		if (!open_files(*cmd))
 		{
 			general.exit_status = 1;

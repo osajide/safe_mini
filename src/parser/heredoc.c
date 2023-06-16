@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:58:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/16 22:13:00 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/16 23:20:56 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,19 @@ char	*ft_remove_quotes(char *s)
 
 char	*expand_line_read(char *line, t_env *env_lst)
 {
-	int	i;
-	char	*temp;
 	char	*new_line;
-	int	start;
-	int	pos;
+	int		i;
 	
 	i = 0;
+	new_line = NULL;
 	while (line[i])
 	{
-		start = i;
-		while (line[i] && line[i] != '$')
-			i++;
-		temp = ft_substr(line, start, i);
-		if (line && line[i] == '$')
-			new_line = ft_strjoin(temp, ft_strdup(handle_dollar_sign(line, &i, env_lst)));
+		if (line[i] == '$')
+			new_line = ft_strjoin(new_line, ft_strdup(handle_dollar_sign(line, &i, env_lst)));
+		else
+			new_line = ft_join_char(new_line, line[i]);
 		i++;
 	}
-	free(line);
-	new_line = ft_strjoin(new_line, temp);
 	return (new_line);
 }
 
@@ -99,7 +93,7 @@ void	read_herdoc(t_cmd *cmd, t_env *env_lst)
 			while (1)
 			{
 				line = readline("> ");
-				if (!line || !ft_strncmp(expand_del, line, ft_strlen(tmp->file)))
+				if (!line || !ft_strncmp(expand_del, line, -1))
 					break;
 				if (!if_quoted)
 					line = expand_line_read(line, env_lst);
