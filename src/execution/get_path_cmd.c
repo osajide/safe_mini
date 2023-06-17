@@ -6,11 +6,12 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:45 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/15 20:44:17 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 16:45:58 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+#include <unistd.h>
 
 char	*get_path(char **env)
 {
@@ -68,11 +69,14 @@ char	*get_path_cmd(t_cmd *cmd, char **env)
 	
 	path_cmd = get_path(env);
 	if (!path_cmd)
-		return (ft_printf(2, "minishell: %s: No such file or directory\n", cmd->args->argument), NULL);
-	i = -1;
-	// while (++i < help->nbr_cmd)
+	{
+		if (access(cmd->args->argument, F_OK))
+			return (ft_printf(2, "minishell: %s: No such file or directory\n", cmd->args->argument), NULL);
+		else if (access(cmd->args->argument, X_OK))
+			return (ft_printf(2, "minishell: %s: Permission denied\n", cmd->args->argument), NULL);
+		else
+			return (cmd->args->argument);
+	}
 	path = check_path(cmd->args->argument, path_cmd);
-	// if (path[0] == '\0')
-	// 	return (ft_printf(2, "minishell: %s: command not found\n", cmd->args->argument), NULL);
 	return (path);
 }
