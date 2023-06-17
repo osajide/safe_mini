@@ -6,11 +6,49 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 18:31:51 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/13 18:32:03 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 17:26:51 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+char	*join_with_free(char *s1, char *s2)
+{
+	char *tmp;
+
+	tmp = ft_strjoin(s1, s2);
+	if (s1)
+		free(s1);
+	return (tmp);
+}
+
+void	clear_lst(t_list *lst)
+{
+	t_list	*cur;
+	
+	if (!lst)
+		return ;
+	while (lst)
+	{
+		cur  = lst;
+		lst = lst->next;
+		free(cur);
+		cur = NULL;
+	}
+}
+
+void	free_2d_array(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+}
 
 t_env	*convert_env_to_list(char **env)
 {

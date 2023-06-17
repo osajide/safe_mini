@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 18:07:56 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/17 16:56:59 by osajide          ###   ########.fr       */
+/*   Created: 2023/06/17 18:03:15 by osajide           #+#    #+#             */
+/*   Updated: 2023/06/17 18:23:35 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include "../gnl/get_next_line.h"
-#include <stdlib.h>
+#include "../../inc/minishell.h"
 
-char	*display_prompt(void)
+char	*trim_with_free(char const *s1, char const *set)
 {
-	char	*line;
-
-	if (isatty(0))
-		line = readline("> minishell $ ");
-	else
-	{
-		line = get_next_line(0);
-		line = ft_strtrim(line, "\n");
-	}
-	if (!line)
-		exit(general.exit_status);
-	if (line && *line)
-		add_history(line);
-	// free(str);
-	return (line);
+	char	*strim;
+	
+	strim = ft_strtrim(s1, set);
+	if (s1)
+		free((char *)s1);
+	return (strim);
 }

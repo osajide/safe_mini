@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:58:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/16 23:20:56 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 17:35:23 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,23 @@ char	*expand_line_read(char *line, t_env *env_lst)
 {
 	char	*new_line;
 	int		i;
+	char	*var_content;
 	
 	i = 0;
 	new_line = NULL;
 	while (line[i])
 	{
 		if (line[i] == '$')
-			new_line = ft_strjoin(new_line, ft_strdup(handle_dollar_sign(line, &i, env_lst)));
+		{
+			var_content = ft_strdup(handle_dollar_sign(line, &i, env_lst));
+			new_line = join_with_free(new_line, var_content);
+			free(var_content);
+		}
 		else
 			new_line = ft_join_char(new_line, line[i]);
 		i++;
 	}
+	free(line);
 	return (new_line);
 }
 
@@ -100,6 +106,8 @@ void	read_herdoc(t_cmd *cmd, t_env *env_lst)
 				ft_putendl_fd(line, cmd->h_fd[1]);
 				free(line);
 			}
+			free(line);
+			free(expand_del);
 			close(cmd->h_fd[1]);
 		}
 		tmp = tmp->next;

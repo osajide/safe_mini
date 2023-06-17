@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:46:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/16 22:47:41 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 17:08:55 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ t_cmd	*fill_struct_cmd(t_list *lst, t_env *env_lst)
 	
 	general.nbr_cmd = command_number(lst);
 	cmd = malloc(general.nbr_cmd * sizeof(t_cmd));
+	if (!cmd)
+		return (NULL);
 	pos = 0;
 	i = 0;
 	while (i < general.nbr_cmd)

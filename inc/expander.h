@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:51:02 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/13 22:09:18 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 18:27:36 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	clear_args_list(t_args *args);
 void	clear_redir_list(t_redir *redir);
 
 t_args	*expand_args(t_args *args, t_env *env_lst);
-int		expand_cmd(t_cmd *cmd, t_env *env_lst);
+void	expand_cmd(t_cmd *cmd, t_env *env_lst);
 char	*handle_dollar_sign_inside_d_quotes(char *s, int *pos, t_env *env_lst);
 
 /*************** expand quotes **************/
@@ -59,7 +59,10 @@ t_redir	*expand_redir(t_redir *redir, t_env *env_lst);
 
 /**************  args_expansion ***************/
 
-void	expand_args_string(char *s, t_env *env_lst, t_args **args);
 t_args	*expand_args(t_args *args, t_env *env_lst);
+
+/**************** utils *******************/
+
+char	*trim_with_free(char const *s1, char const *set);
 
 #endif

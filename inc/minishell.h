@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:18:34 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/15 14:57:55 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 17:25:26 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	minishell(char **env);
 
 /************ UTILS *************/
 
+char	*join_with_free(char *s1, char *s2);
+void	clear_lst(t_list *lst);
+void	free_2d_array(char **s);
 t_env	*convert_env_to_list(char **env);
 // void check_type_cmd(t_list *lst);
 

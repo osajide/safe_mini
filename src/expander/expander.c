@@ -6,13 +6,13 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:11:28 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/15 20:30:23 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 18:26:32 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	expand_cmd(t_cmd *cmd, t_env *env_lst)
+void	expand_cmd(t_cmd *cmd, t_env *env_lst)
 {	
 	cmd->args = expand_args(cmd->args, env_lst);
 	// t_args	*tmp;
@@ -38,20 +38,16 @@ int	expand_cmd(t_cmd *cmd, t_env *env_lst)
 	// 	printf("\n				>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
 	// 	tmp2 = tmp2->next;
 	// }
-	return (1);
 }
 
 t_cmd	*expander(t_cmd *cmd, t_env *env_lst)
 {
-	int		i;
+	int	i;
 
-	// printf("\n\n\033[1;31mParser finished\n***********************\033[0m\n\n");
 	i = 0;
-	//convert_to_env_list(env, &env_lst);
 	while (i < general.nbr_cmd)
 	{
-		if (expand_cmd(&cmd[i], env_lst) == 0)
-			return (NULL);
+		expand_cmd(&cmd[i], env_lst);
 		i++;
 	}
 	return (cmd);

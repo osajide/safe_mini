@@ -6,24 +6,11 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 20:52:39 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/15 20:11:39 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 16:52:39 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-void	free_split(char **s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		free(s[i]);
-		i++;
-	}
-	free(s);
-}
 
 int	if_should_split(char *var)
 {
@@ -56,6 +43,6 @@ void	replace_var_in_args_list(char *before_var, char *var, t_args **new_args)
 		before_var = NULL;
 		i++;
 	}
-	free_split(split);
+	free_2d_array(split);
 }
 
