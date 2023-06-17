@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:13:36 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/15 20:50:08 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 16:32:50 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_echo(t_args *args)
 	}
 	if (args)
 	{
-		while (args && args->argument[0] == '-' && compare_char(args->argument + 1, 'n', ft_strlen(args->argument + 1)))
+		while (args && args->argument && args->argument[0] == '-' && compare_char(args->argument + 1, 'n', ft_strlen(args->argument + 1)))
 		{
 			temp = args->argument;
 			args = args->next;
@@ -49,10 +49,14 @@ void	ft_echo(t_args *args)
 		{
 			while (args)
 			{
-				if (args->argument[0] != '\0')
+				if (args->argument && args->argument[0] != '\0')
+				{
 					ft_printf(1,"%s", args->argument);
-				if (args->argument[0] != '\0' && args->next)
-					ft_printf(1, " ");
+					if ((args->next && args->next->argument)|| (args->next && !args->next->argument && args->next->next))
+						ft_printf(1, " ");
+				}
+				// if (args->argument && args->argument[0] != '\0' && args->next && args->next->argument && args->next->argument[0] != '\0')
+				// 	ft_printf(1, " ");
 				args = args->next;
 			}
 		}

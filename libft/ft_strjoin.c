@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:07:38 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/15 20:12:11 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 15:38:39 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int	j;
 	char	*new;
 
+	if (!s1 && !s2)
+		return (NULL);
 	if (!s1)
 		s1 = ft_calloc(1, 1);
 	if (!s2)

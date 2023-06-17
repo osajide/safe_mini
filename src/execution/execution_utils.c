@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:04:31 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/15 19:20:29 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 16:14:49 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ char	**get_new_arg(t_cmd *cmd)
 	tmp = cmd->args;
 	while (tmp)
 	{
-		len++;
+		if (tmp->argument)
+			len++;
 		tmp = tmp->next;
 	}
 	new = malloc(sizeof(char *) * (len + 1));
@@ -66,7 +67,7 @@ char	**get_new_arg(t_cmd *cmd)
 	tmp = cmd->args;
 	while (tmp)
 	{
-		if (tmp->argument[0] != '\0')
+		if (tmp->argument && tmp->argument[0] != '\0')
 			new[i++] = ft_strdup(tmp->argument);
 		tmp = tmp->next;
 	}

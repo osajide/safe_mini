@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 12:58:50 by osajide           #+#    #+#             */
-/*   Updated: 2023/06/15 20:28:02 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 15:32:27 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	expand_args_string(char *s, t_env *env_lst, t_args **new_args)
 				to_join = 0;
 				replace_var_in_args_list(temp, var, new_args);
 			}
+			if (!*var)
+				var = NULL;
 			if (to_join)
 				temp = ft_strjoin(temp, var);
 		}
@@ -55,7 +57,7 @@ void	expand_args_string(char *s, t_env *env_lst, t_args **new_args)
 			temp = ft_join_char(temp, s[i]);
 		i++;
 	}
-	if (temp)
+	// if (temp)
 		add_args_node_back(new_args, new_args_node(temp));
 }
 

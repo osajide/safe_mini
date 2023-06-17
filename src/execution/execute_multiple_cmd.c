@@ -6,7 +6,7 @@
 /*   By: osajide <osajide@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:00:51 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/06/16 22:40:02 by osajide          ###   ########.fr       */
+/*   Updated: 2023/06/17 15:58:22 by osajide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	execution_commands(t_cmd *cmd, t_env **env)
 			general.exit_status = 1;
 			return;
 		}
-		builtin_cmd(cmd->args, env);
+		if (cmd->args->argument)
+			builtin_cmd(cmd->args, env);
 		dup2(save_fd[0], 0);
 		dup2(save_fd[1], 1);
 	}
@@ -70,7 +71,7 @@ int execute_multiple_cmd(t_cmd *cmd, t_env **env)
 			}
 			if (!open_files(cmd[i]))
 				exit(1);
-			if (cmd[i].args)
+			if (cmd[i].args && cmd[i].args->argument)
 			{
 				if (builtin_cmd(cmd[i].args, env) == 1)
 					execute_cmd(&cmd[i], env);
